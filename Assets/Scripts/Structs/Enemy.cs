@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using UnityEngine;
 public struct Enemy
 {
