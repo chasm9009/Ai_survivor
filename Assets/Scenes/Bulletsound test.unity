@@ -359,6 +359,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a81dc0731a3a14ee1a2134d3f523baf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ThemeMusic
+  themeEvent:
+    Guid:
+      Data1: -757784157
+      Data2: 1227817651
+      Data3: -806034765
+      Data4: 738027598
+    Path: event:/theme
+  parameterName: energy
+  parameterValue: 0
 --- !u!1 &896004410
 GameObject:
   m_ObjectHideFlags: 0
