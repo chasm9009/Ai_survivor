@@ -6,7 +6,6 @@ using UnityEngine.Pool;
 
 public class BulletHandler : MonoBehaviour
 {
-    public Delegate[] bulletBehaviors;
     public ObjectPool<GameObject> bulletPool;
     //current bullets in the scene
     public List<GameObject> currentBullets;
@@ -19,8 +18,18 @@ public class BulletHandler : MonoBehaviour
     {
         GameObject bullet = bulletPool.Get();
         bullet.transform.position = position;
-        var bulletComponent = bullet.GetComponent<Bullet>();
-        bulletComponent.bulletType = type;
+        //set bullet data based on type
+        Bullet bulletComponent;
+        switch (type)
+        {
+            case BulletTypes.Pistol:
+                bulletComponent = PistolBullet.CreatePistolBullet(new Stats()); // Pass player stats as needed
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
+
         currentBullets.Add(bullet);
     }
     public void DespawnBullet(GameObject bullet)
@@ -37,7 +46,7 @@ public class BulletHandler : MonoBehaviour
             {
                 case BulletTypes.Pistol:
                     // Execute pistol behavior
-                    bulletBehaviors[0]?.DynamicInvoke();
+                    PistolBullet.PistolBehavior(bullet, bullet.GetComponent<Bullet>(), Time.deltaTime);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
