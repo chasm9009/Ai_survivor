@@ -4,24 +4,30 @@ using UnityEngine;
 
 public class enemystruct : MonoBehaviour
 {
-    private EnemyStats enemyStats;
+    public EnemyStats enemyStats;
     public GameObject player;
     public Rigidbody2D enemybody;
     [SerializeField] private float speed = 0.003f;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     public EnemyHandler enemyHandler;
-    public void Start()
+    private void Start()
     {
-        enemyHandler = FindAnyObjectByType<EnemyHandler>();
-
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
+        {
+            player = playerObject;
+        }
+        enemyHandler = FindObjectOfType<EnemyHandler>();
     }
-    void Update()
+    public void InitializeEnemy(EnemyStats stats)
     {
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed);
-
+        enemyStats = stats;
+        Debug.Log($"Initialized enemy with type {enemyStats.enemyType} and health {enemyStats.currentHealth}");
+    }
+    void FixedUpdate()
+    {
         float direction = player.transform.position.x - transform.position.x;
-
         if (direction < 0)
         {
             spriteRenderer.flipX = true;
