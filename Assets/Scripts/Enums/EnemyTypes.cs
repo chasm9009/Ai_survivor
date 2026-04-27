@@ -1,5 +1,5 @@
 public enum EnemyTypes
 {
-    grunt,
-    runner
+    Walker,
+    Runner
 }
