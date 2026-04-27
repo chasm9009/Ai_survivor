@@ -40,7 +40,6 @@ public class playerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Debug.Log(moveInput.action.ReadValue<Vector2>());
         if (moveInput.action.ReadValue<Vector2>() == Vector2.zero)
         {
             weaponHandler.UpdateWeapons(playerStats, weaponHandler.bulletHandler, Time.fixedDeltaTime, Vector2.right);

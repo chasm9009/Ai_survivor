@@ -67,7 +67,6 @@ public class BulletHandler : MonoBehaviour
             switch (bullet.GetComponent<Bullet>().bulletType)
             {
                 case BulletTypes.Pistol:
-                    Debug.Log("Updating pistol bullet");
                     bool shouldDespawn = PistolBullet.PistolBehavior(bullet, bullet.GetComponent<Bullet>(), Time.deltaTime);
                     if (shouldDespawn) bulletsToRemove.Add(bullet);
                     break;
