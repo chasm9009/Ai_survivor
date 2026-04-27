@@ -1,0 +1,24 @@
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+namespace DialougeSystem
+{
+    public class eightBitIntroText : eightBitBaseClass
+    {
+        [Header("Text Options")]
+        private TMP_Text textHolder;
+        [SerializeField] private string input;
+        [SerializeField]private TMP_FontAsset tmp_Font;
+
+        private void Awake()
+        {
+            textHolder = GetComponent<TMP_Text>(); // Get the TMP_Text component
+
+            StartCoroutine(WriteText(input, textHolder, tmp_Font)); // Start the coroutine to write text
+
+
+        }
+    }
+}
+
