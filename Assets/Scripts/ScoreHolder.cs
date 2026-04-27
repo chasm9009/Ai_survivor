@@ -41,7 +41,7 @@ public class ScoreHolder : MonoBehaviour
 
     private void CheckForLevelUp()
     {
-        while (currentXP >= targetXP)
+        if(currentXP >= targetXP)
         {
             currentXP -= targetXP;
             currentLevel++;
