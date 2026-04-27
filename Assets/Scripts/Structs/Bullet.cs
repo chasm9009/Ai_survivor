@@ -6,5 +6,6 @@ public struct Bullet
     public int damage;
     public int range;
 
+    public float speed;
     public Sprite sprite;
 }
