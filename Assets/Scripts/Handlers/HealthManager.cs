@@ -3,38 +3,54 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public Image healthImage;
+    [Header("References")]
+    [SerializeField] private Image healthImage;
 
-    public Sprite health100;
-    public Sprite health75;
-    public Sprite health50;
-    public Sprite health25;
-    public Sprite health0;
+    [Header("Health Sprites")]
+    [SerializeField] private Sprite health0;
+    [SerializeField] private Sprite health25;
+    [SerializeField] private Sprite health50;
+    [SerializeField] private Sprite health75;
+    [SerializeField] private Sprite health100;
 
-    private int currentHealth = 100;
+    [Header("Health Settings")]
+    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int currentHealth = 100;
 
     void Start()
     {
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthBar();
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0, 100);
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
         UpdateHealthBar();
     }
 
-    void UpdateHealthBar()
+    // Button helper: call this from a UI Button OnClick event
+    public void TakeDamage25()
     {
-        if (currentHealth > 75)
+        TakeDamage(25);
+    }
+
+    private void UpdateHealthBar()
+    {
+        if (healthImage == null)
+            return;
+
+        float progress = (float)currentHealth / maxHealth;
+
+        if (progress >= 1f)
             healthImage.sprite = health100;
-        else if (currentHealth > 50)
+        else if (progress >= 0.75f)
             healthImage.sprite = health75;
-        else if (currentHealth > 25)
+        else if (progress >= 0.5f)
             healthImage.sprite = health50;
-        else if (currentHealth > 0)
+        else if (progress >= 0.25f)
             healthImage.sprite = health25;
         else
             healthImage.sprite = health0;
