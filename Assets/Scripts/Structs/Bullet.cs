@@ -2,7 +2,7 @@ using UnityEngine;
 
 public struct Bullet
 {
-    public BullitTypes bullitType;
+    public BulletTypes bulletType;
     public int damage;
     public int range;
 
