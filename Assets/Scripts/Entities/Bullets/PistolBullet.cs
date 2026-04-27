@@ -21,9 +21,17 @@ public static class PistolBullet
         return bulletData;
     }
 
-    public static void PistolBehavior(GameObject bulletObject, Bullet bulletData, float deltaTime)
+    public static bool PistolBehavior(GameObject bulletObject, Bullet bulletData, float deltaTime)
     {
+        Debug.Log("Pistol bullet behavior executing");
+        Debug.Log($"Bullet speed: {bulletData.speed}, Bullet damage: {bulletData.damage}, Bullet range: {bulletData.range}");
         //linear movement, collision detection, and damage application logic for pistol bullets
-        bulletObject.transform.Translate(Vector3.forward * bulletData.speed * deltaTime);
+        bulletObject.transform.Translate(bulletData.direction * bulletData.speed * deltaTime, Space.World);
+        bulletData.distanceTraveled += bulletData.speed * deltaTime;
+        if (bulletData.distanceTraveled >= bulletData.range)
+        {
+            return true;
+        }
+        return false;
     }
 }

@@ -7,6 +7,6 @@ public struct Stats
     public int speed;
     public int BaseDamage;
     public int Range;
-
     public int BulletSpeed;
+    public float fireRate;
 }
