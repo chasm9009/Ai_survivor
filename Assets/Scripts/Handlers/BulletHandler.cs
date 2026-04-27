@@ -12,6 +12,9 @@ public class BulletHandler : MonoBehaviour
     public List<GameObject> currentBullets;
 
     [SerializeField] private Stats playerStats;
+   
+   [SerializeField] 
+   private BulletSound bulletSound;
 
 
     public void Start()
@@ -26,6 +29,7 @@ public class BulletHandler : MonoBehaviour
             maxSize: 1000
         );
     }
+    
     [SerializeField] private GameObject pistolBulletPrefab;
     public void SpawnBullet(BulletTypes type, Vector3 position, Stats playerStats, Vector2 direction)
     {
@@ -44,6 +48,9 @@ public class BulletHandler : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
+
+        bulletSound.PlayBang();
+
     }
     public void DespawnBullet(GameObject bullet)
     {
