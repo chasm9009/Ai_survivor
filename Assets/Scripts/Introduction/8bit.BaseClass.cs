@@ -10,22 +10,36 @@ namespace DialougeSystem
     public class eightBitBaseClass : MonoBehaviour
     {
         [Header("Audio Options")]
-        [SerializeField] protected AudioSource audioSource;
+        [SerializeField] private AudioSource audioSource;
         [SerializeField] protected AudioClip typingSound;
+
+        private void Awake()
+        {
+            if (audioSource == null)
+                audioSource = GetComponent<AudioSource>();
+
+            if (audioSource != null)
+            {
+                audioSource.playOnAwake = false;
+                audioSource.loop = false;
+            }
+        }
 
         protected IEnumerator WriteText(string input, TMP_Text textHolder, TMP_FontAsset tMP_Font)
         {
             textHolder.font= tMP_Font; 
         
             textHolder.text = ""; //nustil text først 
+
+            if (audioSource != null && typingSound != null)
+            {
+                audioSource.PlayOneShot(typingSound);
+            }
+
             for(int i=0; i < input.Length; i++)
             
             {
                 textHolder.text += input[i];
-                if (audioSource != null && typingSound != null)
-                {
-                    audioSource.PlayOneShot(typingSound);
-                }
                 yield return new WaitForSeconds(0.035f);
             }
         }
