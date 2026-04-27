@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
         currentWeapon = WeaponTypes.Pistol;
         currentEnemy = EnemyTypes.grunt;
         currentBullit = BullitTypes.Pistol;
+        // Additional initialization code can go here
     }
 
     void Update()
