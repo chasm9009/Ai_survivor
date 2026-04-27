@@ -1,5 +1,5 @@
 using UnityEngine;
-public struct Enemy
+public struct EnemyStats
 {
     public EnemyTypes enemyType;
     public Stats stats;

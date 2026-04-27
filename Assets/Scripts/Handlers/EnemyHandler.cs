@@ -11,6 +11,20 @@ public class EnemyHandler : MonoBehaviour
     //current enemies in the scene
     public List<GameObject> currentEnemies;
 
+    public GameObject EnemyPrefab;
+
+    public void Start()
+    {
+        enemyPool = new ObjectPool<GameObject>(
+            createFunc: () => Instantiate(EnemyPrefab),
+            actionOnGet: (obj) => obj.SetActive(true),
+            actionOnRelease: (obj) => obj.SetActive(false),
+            actionOnDestroy: (obj) => Destroy(obj),
+            collectionCheck: false,
+            defaultCapacity: 20,
+            maxSize: 100
+        );
+    }
     public void Update()
     {
 
@@ -19,7 +33,7 @@ public class EnemyHandler : MonoBehaviour
     {
         GameObject enemy = enemyPool.Get();
         enemy.transform.position = position;
-        var enemyComponent = enemy.GetComponent<Enemy>();
+        var enemyComponent = enemy.GetComponent<EnemyStats>();
         enemyComponent.enemyType = type;
         currentEnemies.Add(enemy);
     }
@@ -33,7 +47,7 @@ public class EnemyHandler : MonoBehaviour
     {
         foreach (var enemy in currentEnemies)
         {
-            switch (enemy.GetComponent<Enemy>().enemyType)
+            switch (enemy.GetComponent<EnemyStats>().enemyType)
             {
                 case EnemyTypes.grunt:
                     // Execute grunt behavior
