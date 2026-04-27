@@ -4,25 +4,26 @@ public class SceneChanger : MonoBehaviour
 {
     public GameObject Introscene;
     public GameObject mainScene;
-  
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void StartMainScene()
     {
-        
+        ChangeScene(mainScene);
     }
 
-    // Update is called once per frame
-    void Update() 
+    public void ShowIntroScene()
     {
-    
+        ChangeScene(Introscene);
     }
-    public void changeScene(GameObject nameOfPanel)
-    {
-        // Deactivate all panels
-        Introscene.SetActive(false);
-        mainScene.SetActive(false);
-        // Activate the specified panel
-        nameOfPanel.SetActive(true);
+
+    public void ChangeScene(GameObject panelToActivate)
+ {
+        if (Introscene != null)
+            Introscene.SetActive(false);
+
+        if (mainScene != null)
+            mainScene.SetActive(false);
+
+        if (panelToActivate != null)
+            panelToActivate.SetActive(true);
     }
 }   

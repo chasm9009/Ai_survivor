@@ -9,7 +9,11 @@ namespace DialougeSystem
 {
     public class eightBitBaseClass : MonoBehaviour
     {
-       protected IEnumerator WriteText(string input, TMP_Text textHolder, TMP_FontAsset tMP_Font)
+        [Header("Audio Options")]
+        [SerializeField] protected AudioSource audioSource;
+        [SerializeField] protected AudioClip typingSound;
+
+        protected IEnumerator WriteText(string input, TMP_Text textHolder, TMP_FontAsset tMP_Font)
         {
             textHolder.font= tMP_Font; 
         
@@ -18,6 +22,10 @@ namespace DialougeSystem
             
             {
                 textHolder.text += input[i];
+                if (audioSource != null && typingSound != null)
+                {
+                    audioSource.PlayOneShot(typingSound);
+                }
                 yield return new WaitForSeconds(0.035f);
             }
         }
