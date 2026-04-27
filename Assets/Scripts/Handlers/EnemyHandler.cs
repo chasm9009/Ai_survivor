@@ -29,7 +29,7 @@ public class EnemyHandler : MonoBehaviour
     // 2 minute spawn with 5 second intervals, can be adjusted for testing 
     public void FixedUpdate()
     {
-        if (currentEnemies.Count < 20) CircleSpawnEnemies(5f, 5f, Time.fixedDeltaTime);
+        if (currentEnemies.Count < 20) CircleSpawnEnemies(40f, 2f, Time.fixedDeltaTime);
         UpdateEnemies();
     }
     float deltaTimeCounter = 0f;
