@@ -77,6 +77,7 @@ public class playerMovement : MonoBehaviour
         {
             // Handle player death (e.g., disable movement, play animation, etc.)
             Debug.Log("Player has died!");
+            sfxManager.PlayPlayerDeath();
         }
 
         timeSinceLastHit = Time.time; // Reset invulnerability timer
