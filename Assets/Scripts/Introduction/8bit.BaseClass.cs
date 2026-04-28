@@ -5,17 +5,15 @@ using TMPro;
 using UnityEngine.TextCore.Text;
 
 namespace DialougeSystem
-
 {
-    public class eightBitBaseClass : MonoBehaviour
+    public static class eightBitBaseClass
     {
-       protected IEnumerator WriteText(string input, TMP_Text textHolder, TMP_FontAsset tMP_Font)
+        public static IEnumerator WriteText(string input, TMP_Text textHolder, TMP_FontAsset tMP_Font)
         {
-            textHolder.font= tMP_Font; 
-        
-            textHolder.text = ""; //nustil text først 
-            for(int i=0; i < input.Length; i++)
-            
+            textHolder.font = tMP_Font;
+            textHolder.text = "";
+
+            for (int i = 0; i < input.Length; i++)
             {
                 textHolder.text += input[i];
                 yield return new WaitForSeconds(0.035f);
@@ -23,5 +21,3 @@ namespace DialougeSystem
         }
     }
 }
-
-
