@@ -36,9 +36,11 @@ public class BulletHandler : MonoBehaviour
         bulletComponent.bulletType = type;
         bulletComponent.direction = direction;
         currentBullets.Add(bullet);
+        var bulletSound = BulletSound.Instance;
         switch (type)
         {
             case BulletTypes.Pistol:
+                bulletSound.PlayBang();
                 PistolBullet.UpdatePistolBulletStats(bulletComponent, playerStats);
                 break;
             default:
