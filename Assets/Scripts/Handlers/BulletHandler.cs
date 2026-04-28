@@ -14,6 +14,8 @@ public class BulletHandler : MonoBehaviour
     [SerializeField] private Stats playerStats;
     [SerializeField] private GameObject pistolBulletPrefab;
 
+    [SerializeField] private BulletSound bulletSound1;
+
     public void Start()
     {
         bulletPool = new ObjectPool<GameObject>(
@@ -36,17 +38,22 @@ public class BulletHandler : MonoBehaviour
         bulletComponent.bulletType = type;
         bulletComponent.direction = direction;
         currentBullets.Add(bullet);
-        var bulletSound = BulletSound.Instance;
         switch (type)
         {
+            case BulletTypes.Knife:
+                bulletSound1.PlayKnifeSwing();
+                KnifeBullet.UpdateKnifeBulletStats(bulletComponent, playerStats);
+                break;
             case BulletTypes.Pistol:
-                bulletSound.PlayBang();
+                bulletSound1.PlayBang();
                 PistolBullet.UpdatePistolBulletStats(bulletComponent, playerStats);
                 break;
             case BulletTypes.Rifle:
+                bulletSound1.PlayBang();
                 RifleBullet.UpdateRifleBulletStats(bulletComponent, playerStats);
                 break;
             case BulletTypes.Shotgun:
+                bulletSound1.PlayEnergyShock();
                 ShotgunBullet.UpdateShotgunBulletStats(bulletComponent, playerStats);
                 break;
             default:
@@ -74,6 +81,11 @@ public class BulletHandler : MonoBehaviour
         {
             switch (bullet.GetComponent<Bullet>().bulletType)
             {
+                case BulletTypes.Knife:
+                    bool shouldDespawnKnife = KnifeBullet.KnifeBehavior(bullet, bullet.GetComponent<Bullet>(), Time.deltaTime);
+                    if (shouldDespawnKnife) bulletsToRemove.Add(bullet);
+                    break;
+
                 case BulletTypes.Pistol:
                     bool shouldDespawn = PistolBullet.PistolBehavior(bullet, bullet.GetComponent<Bullet>(), Time.deltaTime);
                     if (shouldDespawn) bulletsToRemove.Add(bullet);

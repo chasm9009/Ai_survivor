@@ -101,8 +101,8 @@ public class playerMovement : MonoBehaviour
         Debug.Log("Leveled Up! Current Level: " + playerStats.Level);
         sfxManager.PlayLevelUp();
     }
-    public void LevelUpDebug()
+    public void OnDebugLevelUp()
     {
-
+        LevelUp();
     }
 }

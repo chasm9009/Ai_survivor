@@ -18,7 +18,7 @@ public class WeaponHandler : MonoBehaviour
                     Vector2 pistolInaccuracy = UnityEngine.Random.insideUnitCircle * 0.1f;
                     Vector2 pistolDirection = (PlayerDirection + pistolInaccuracy).normalized;
                     // Execute pistol behavior
-                    
+
                     if (Pistol.Fire(playerStats, deltaTime))
                     {
                         bulletHandler.SpawnBullet(BulletTypes.Pistol, transform.position, playerStats, pistolDirection);
@@ -74,7 +74,7 @@ public class WeaponHandler : MonoBehaviour
         switch (level)
         {
             case 3:
-            //add shotgun
+            //add knife
             case 5:
                 AddWeapon(WeaponTypes.Rifle);
                 break;
