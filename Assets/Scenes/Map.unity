@@ -25673,7 +25673,6 @@ GameObject:
   - component: {fileID: 665475411}
   - component: {fileID: 665475410}
   - component: {fileID: 665475409}
-  - component: {fileID: 665475408}
   m_Layer: 5
   m_Name: HintText
   m_TagString: Untagged
@@ -25681,28 +25680,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &665475408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 665475407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b617c203b43c94cbea9c012cd55259f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LevelUpController
-  HintScreen: {fileID: 1535174829}
-  RememberText: {fileID: 1477207728}
-  HintText: {fileID: 665475409}
-  QuizScreen: {fileID: 1688535007}
-  QuizQuestion: {fileID: 283698714}
-  AnswerButton_A: {fileID: 1389227206}
-  AnswerButton_B: {fileID: 2137905575}
-  AnswerButton_C: {fileID: 1209605360}
-  AnswerButton_D: {fileID: 1319936838}
-  UpgradeScreen: {fileID: 1726901045}
 --- !u!114 &665475409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73527,6 +73504,7 @@ RectTransform:
   - {fileID: 1535174833}
   - {fileID: 1726901046}
   - {fileID: 1688535008}
+  - {fileID: 1927836683}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -110953,7 +110931,7 @@ MonoBehaviour:
   SpeedButton: {fileID: 1448088432}
   MaxHealthButton: {fileID: 1347346516}
   DamageButton: {fileID: 1912342404}
-  hintQuizController: {fileID: 665475408}
+  hintQuizController: {fileID: 1927836684}
 --- !u!1 &1748969094
 GameObject:
   m_ObjectHideFlags: 0
@@ -112162,7 +112140,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1811915780}
   scoreHolder: {fileID: 470145693}
   healthBar: {fileID: 1648934771}
-  hintQuizController: {fileID: 665475408}
+  hintQuizController: {fileID: 1927836684}
   sfxManager: {fileID: 1994004234}
 --- !u!70 &1811915778
 CapsuleCollider2D:
@@ -123687,6 +123665,64 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1927836682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1927836683}
+  - component: {fileID: 1927836684}
+  m_Layer: 5
+  m_Name: HintAndQuizController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1927836683
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927836682}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 796724895}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1927836684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927836682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b617c203b43c94cbea9c012cd55259f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelUpController
+  HintScreen: {fileID: 1535174829}
+  RememberText: {fileID: 1477207728}
+  HintText: {fileID: 665475409}
+  QuizScreen: {fileID: 1688535007}
+  QuizQuestion: {fileID: 283698714}
+  AnswerButton_A: {fileID: 1389227206}
+  AnswerButton_B: {fileID: 2137905575}
+  AnswerButton_C: {fileID: 1209605360}
+  AnswerButton_D: {fileID: 1319936838}
+  UpgradeScreen: {fileID: 1726901045}
 --- !u!1 &1933291582
 GameObject:
   m_ObjectHideFlags: 0
