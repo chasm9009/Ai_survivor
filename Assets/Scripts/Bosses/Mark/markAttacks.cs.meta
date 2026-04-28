@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 7f067e25e856fd6498963c70f1ffb3dd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - player: {instanceID: 0}
+  - dogecoinPrefab: {fileID: 2988643783488499838, guid: 7a69a9a109f1d104da18ef7b233201b9, type: 3}
+  - sfxManager: {instanceID: 0}
+  - dogecoinshooter: {instanceID: 0}
+  - markMovement: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
