@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class LevelUpController : MonoBehaviour
 {
-    public TextMeshPro RememberText;
+    public TextMeshProUGUI RememberText;
     public TextMeshProUGUI HintText; 
-    public TextMeshPro QuizQuestion;
+    public TextMeshProUGUI QuizQuestion;
     public GameObject HintBackground;
     
     private void ActivateHintScreen(string spørgsmål)
