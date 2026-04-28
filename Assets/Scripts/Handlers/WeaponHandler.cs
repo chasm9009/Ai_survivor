@@ -28,6 +28,7 @@ public class WeaponHandler : MonoBehaviour
             }
         }
     }
+
     public void AddWeapon(WeaponTypes type)
     {
         switch (type)

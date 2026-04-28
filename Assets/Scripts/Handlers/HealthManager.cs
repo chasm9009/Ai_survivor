@@ -13,31 +13,12 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private Sprite health75;
     [SerializeField] private Sprite health100;
 
-    [Header("Health Settings")]
-    [SerializeField] private int maxHealth = 100;
-    [SerializeField] private int currentHealth = 100;
-
     void Start()
     {
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        UpdateHealthBar();
+        healthImage.sprite = health100;
     }
 
-    public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-
-        UpdateHealthBar();
-    }
-
-    // Button helper: call this from a UI Button OnClick event
-    public void TakeDamage25()
-    {
-        TakeDamage(25);
-    }
-
-    private void UpdateHealthBar()
+    public void UpdateHealthBar(int currentHealth, int maxHealth)
     {
         if (healthImage == null)
             return;
