@@ -6,7 +6,6 @@ public class ScoreHolder : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] TextMeshProUGUI currentLevelText;
-    [SerializeField] TextMeshProUGUI xpText;
     [SerializeField] Image xpImage;
 
     [Space(10)]
@@ -21,46 +20,8 @@ public class ScoreHolder : MonoBehaviour
     [Header("Score Settings")]
     [SerializeField] int targetXP = 100;
     [SerializeField] int targetXPIncrease = 25;
-
-    int currentLevel = 1;
-    int currentXP = 0;
     bool showFullXP = false;
-
-    void Start()
-    {
-        UpdateHUD();
-    }
-
-    public void IncreaseXP(int amount)
-    {
-        currentXP += amount;
-        showFullXP = currentXP >= targetXP;
-        CheckForLevelUp();
-        UpdateHUD();
-    }
-
-    private void CheckForLevelUp()
-    {
-        if(currentXP >= targetXP)
-        {
-            currentXP -= targetXP;
-            currentLevel++;
-            targetXP += targetXPIncrease;
-        }
-    }
-
-    private void UpdateHUD()
-    {
-        if (currentLevelText)
-            currentLevelText.text = "Level: " + currentLevel;
-
-        if (xpText)
-            xpText.text = currentXP + " / " + targetXP;
-
-        UpdateXPBar();
-    }
-
-    private void UpdateXPBar()
+    public void UpdateXPBar(int currentLevel, float currentXp = -1, float targetXp = -1)
     {
         if (showFullXP)
         {
@@ -69,7 +30,7 @@ public class ScoreHolder : MonoBehaviour
             return;
         }
 
-        float progress = (float)currentXP / targetXP;
+        float progress = (float)currentXp / targetXp;
 
         if (progress >= 1f)
             xpImage.sprite = xp100;
@@ -81,5 +42,7 @@ public class ScoreHolder : MonoBehaviour
             xpImage.sprite = xp25;
         else
             xpImage.sprite = xp0;
+
+        currentLevelText.text = "Level " + currentLevel;
     }
 }

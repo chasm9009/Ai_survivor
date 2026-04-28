@@ -12,7 +12,10 @@ public static class InitPlayerStats
             BaseDamage = 10,
             Range = 100,
             BulletSpeed = 20,
-            fireRate = 0.5f
+            fireRate = 1f,
+            XP = 0,
+            XPToNextLevel = 100,
+            Level = 0
         };
     }
 }

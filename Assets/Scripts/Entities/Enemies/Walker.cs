@@ -20,6 +20,8 @@ public static class Walker
         stats.maxHealth = 100;
         stats.currentHealth = 100;
         stats.speed = 1f;
+        stats.xpamount = 10f;
+        stats.damage = 10;
         Debug.Log($"Initialized Walker stats: Health={stats.currentHealth}, Speed={stats.speed}");
         return stats;
     }

@@ -14,6 +14,7 @@ public class EnemyHandler : MonoBehaviour
     public GameObject EnemyPrefab;
 
     public GameObject player;
+    [SerializeField] private ThemeMusic themeMusic;
     public void Start()
     {
         enemyPool = new ObjectPool<GameObject>(
@@ -31,6 +32,9 @@ public class EnemyHandler : MonoBehaviour
     {
         if (currentEnemies.Count < 20) CircleSpawnEnemies(40f, 2f, Time.fixedDeltaTime);
         UpdateEnemies();
+
+        float energy = Mathf.Clamp01(currentEnemies.Count / 16f);
+        themeMusic.SetEnergy(energy);
     }
     float deltaTimeCounter = 0f;
     public void CircleSpawnEnemies(float radius, float spawnInterval, float deltaTime)
@@ -60,7 +64,7 @@ public class EnemyHandler : MonoBehaviour
                 enemyComponent.currentHealth = stats.currentHealth;
                 enemyComponent.damage = stats.damage;
                 enemyComponent.range = stats.range;
-                enemyComponent.xpType = stats.xpType;
+                enemyComponent.xpamount = stats.xpamount;
                 enemyComponent.stats = stats.stats;
                 enemyComponent.enemyType = stats.enemyType;
                 enemystruct enemyStruct = enemy.GetComponent<enemystruct>();
@@ -77,7 +81,7 @@ public class EnemyHandler : MonoBehaviour
         var enemyComponent = enemy.GetComponent<enemystruct>();
         enemyComponent.enemyStats.currentHealth = enemyComponent.enemyStats.maxHealth;
         currentEnemies.Remove(enemy);
-        enemyPool.Release(enemy); // ← release LAST
+        enemyPool.Release(enemy);
     }
 
     public void UpdateEnemies()

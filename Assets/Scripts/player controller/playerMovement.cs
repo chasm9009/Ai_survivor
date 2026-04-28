@@ -15,6 +15,10 @@ public class playerMovement : MonoBehaviour
     [SerializeField] public InputActionReference moveInput;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
+    [SerializeField] private ScoreHolder scoreHolder;
+    [SerializeField] private HealthBar healthBar;
+    [SerializeField] private SfxManager sfxManager;
+
     // Update is called once per frame
     private void Update()
     {
@@ -35,16 +39,68 @@ public class playerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerStats = InitPlayerStats.InitializePlayerStats();
         weaponHandler = GetComponent<WeaponHandler>();
+        sfxManager = GetComponent<SfxManager>();
         weaponHandler.AddWeapon(WeaponTypes.Pistol);
 
     }
+    Vector2 lastDirection;
     private void FixedUpdate()
     {
         if (moveInput.action.ReadValue<Vector2>() == Vector2.zero)
         {
-            weaponHandler.UpdateWeapons(playerStats, weaponHandler.bulletHandler, Time.fixedDeltaTime, Vector2.right);
+            if (lastDirection == null || lastDirection == Vector2.zero)
+            {
+                weaponHandler.UpdateWeapons(playerStats, weaponHandler.bulletHandler, Time.fixedDeltaTime, Vector2.right);
+                return; // No movement and no last direction, so skip firing
+            }
+            weaponHandler.UpdateWeapons(playerStats, weaponHandler.bulletHandler, Time.fixedDeltaTime, lastDirection);
             return;
         }
-        weaponHandler.UpdateWeapons(playerStats, weaponHandler.bulletHandler, Time.fixedDeltaTime, moveInput.action.ReadValue<Vector2>());
+        lastDirection = moveInput.action.ReadValue<Vector2>();
+        weaponHandler.UpdateWeapons(playerStats, weaponHandler.bulletHandler, Time.fixedDeltaTime, lastDirection);
     }
+    float timeSinceLastHit = 0f;
+    public void TakeDamage(int damage)
+    {
+        if (Time.time - timeSinceLastHit < 1f)
+        {
+            return; // Player is still invulnerable, ignore damage
+        }
+        playerStats.CurrentHealth -= damage;
+        playerStats.CurrentHealth = Mathf.Clamp(playerStats.CurrentHealth, 0, playerStats.MaxHealth);
+        // Update health bar here if you have a reference to it
+        Debug.Log("Damage " + damage);
+        Debug.Log("CurrentHealth " + playerStats.CurrentHealth);
+        Debug.Log("CurrentHealth " + playerStats.MaxHealth);
+        healthBar.UpdateHealthBar(playerStats.CurrentHealth, playerStats.MaxHealth);
+        if (playerStats.CurrentHealth <= 0)
+        {
+            // Handle player death (e.g., disable movement, play animation, etc.)
+            Debug.Log("Player has died!");
+            sfxManager.PlayPlayerDeath();
+        }
+
+        timeSinceLastHit = Time.time; // Reset invulnerability timer
+    }
+
+    public void GainXP(float xp)
+    {
+        playerStats.XP += xp;
+        if (playerStats.XP >= playerStats.XPToNextLevel)
+        {
+            LevelUp();
+        }
+        scoreHolder.UpdateXPBar(playerStats.Level, playerStats.XP, playerStats.XPToNextLevel);
+        
+    }
+    public void LevelUp()
+    {
+        playerStats.Level++;
+        playerStats.XP = 0;
+        playerStats.XPToNextLevel = playerStats.XPToNextLevel * 1.2f; // Increase target XP for next level
+        // Here you can also increase player stats or unlock new abilities based on the new level
+        Debug.Log("Leveled Up! Current Level: " + playerStats.Level);
+        sfxManager.PlayLevelUp();
+    }
+
 }
