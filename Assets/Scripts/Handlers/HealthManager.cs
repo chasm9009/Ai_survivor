@@ -12,6 +12,7 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private Sprite health50;
     [SerializeField] private Sprite health75;
     [SerializeField] private Sprite health100;
+    [SerializeField] private ThemeMusic themeMusic;
 
     void Start()
     {
@@ -35,6 +36,11 @@ public class HealthBar : MonoBehaviour
             healthImage.sprite = health25;
         else
             healthImage.sprite = health0;
+            
+            float healthprog = (float)currentHealth / maxHealth;
+        themeMusic.StartRinging(healthprog);
     }
+
+   
 }
 

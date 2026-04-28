@@ -14,6 +14,7 @@ public class EnemyHandler : MonoBehaviour
     public GameObject EnemyPrefab;
 
     public GameObject player;
+    [SerializeField] private ThemeMusic themeMusic;
     public void Start()
     {
         enemyPool = new ObjectPool<GameObject>(
@@ -29,8 +30,26 @@ public class EnemyHandler : MonoBehaviour
     // 2 minute spawn with 5 second intervals, can be adjusted for testing 
     public void FixedUpdate()
     {
-        if (currentEnemies.Count < 20) CircleSpawnEnemies(40f, 2f, Time.fixedDeltaTime);
+
+        if (currentEnemies.Count < 50) 
+        {
+            if (Time.time > 120f)
+            {
+                CircleSpawnEnemies(60f, 2f, Time.fixedDeltaTime);
+            }
+            else if (Time.time > 60f)
+            {
+                CircleSpawnEnemies(40f, 3f, Time.fixedDeltaTime);
+            }
+            else
+            {
+                CircleSpawnEnemies(20f, 5f, Time.fixedDeltaTime);
+            }
+        }
         UpdateEnemies();
+
+        float energy = Mathf.Clamp01(currentEnemies.Count / 16f);
+        themeMusic.SetEnergy(energy);
     }
     float deltaTimeCounter = 0f;
     public void CircleSpawnEnemies(float radius, float spawnInterval, float deltaTime)
