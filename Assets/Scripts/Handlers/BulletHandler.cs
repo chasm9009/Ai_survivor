@@ -48,6 +48,9 @@ public class BulletHandler : MonoBehaviour
             case BulletTypes.Shotgun:
                 ShotgunBullet.UpdateShotgunBulletStats(bulletComponent, playerStats);
                 break;
+            case BulletTypes.Knife:
+                KnifeBullet.UpdateKnifeBulletStats(bulletComponent, playerStats);
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
@@ -84,6 +87,10 @@ public class BulletHandler : MonoBehaviour
                 case BulletTypes.Shotgun:
                     bool shouldDespawnShotgun = ShotgunBullet.ShotgunBehavior(bullet, bullet.GetComponent<Bullet>(), Time.deltaTime);
                     if (shouldDespawnShotgun) bulletsToRemove.Add(bullet);
+                    break;
+                case BulletTypes.Knife:
+                    bool shouldDespawnKnife = KnifeBullet.KnifeBehavior(bullet, bullet.GetComponent<Bullet>(), Time.deltaTime);
+                    if (shouldDespawnKnife) bulletsToRemove.Add(bullet);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

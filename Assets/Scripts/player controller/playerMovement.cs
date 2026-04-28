@@ -38,7 +38,7 @@ public class playerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerStats = InitPlayerStats.InitializePlayerStats();
         weaponHandler = GetComponent<WeaponHandler>();
-        weaponHandler.AddWeapon(WeaponTypes.Pistol);
+        weaponHandler.UpdateWeaponsForLevel(playerStats.Level);
 
     }
     Vector2 lastDirection;
@@ -94,6 +94,7 @@ public class playerMovement : MonoBehaviour
         playerStats.Level++;
         playerStats.XP = 0;
         playerStats.XPToNextLevel = playerStats.XPToNextLevel * 1.2f; // Increase target XP for next level
+        weaponHandler.UpdateWeaponsForLevel(playerStats.Level);
         // Here you can also increase player stats or unlock new abilities based on the new level
         Debug.Log("Leveled Up! Current Level: " + playerStats.Level);
     }

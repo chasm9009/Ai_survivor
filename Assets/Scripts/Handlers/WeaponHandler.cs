@@ -6,6 +6,22 @@ public class WeaponHandler : MonoBehaviour
 {
     public BulletHandler bulletHandler;
     public List<Weapon> currentWeapons = new List<Weapon>();
+
+    public void UpdateWeaponsForLevel(int level)
+    {
+        currentWeapons.Clear();
+        currentWeapons.Add(new Weapon { weaponType = WeaponTypes.Pistol, damage = 10 });
+
+        if (level >= 3)
+            currentWeapons.Add(new Weapon { weaponType = WeaponTypes.Knife, damage = 18 });
+
+        if (level >= 6)
+            currentWeapons.Add(new Weapon { weaponType = WeaponTypes.Rifle, damage = 15 });
+
+        if (level >= 9)
+            currentWeapons.Add(new Weapon { weaponType = WeaponTypes.Shotgun, damage = 12 });
+    }
+
     public void UpdateWeapons(Stats playerStats, BulletHandler bulletHandler, float deltaTime, Vector2 PlayerDirection)
     {
         foreach (var weapon in currentWeapons)
@@ -44,6 +60,13 @@ public class WeaponHandler : MonoBehaviour
                         }
                     }
                     break;
+                case WeaponTypes.Knife:
+                    if (Knife.Fire(playerStats, deltaTime))
+                    {
+                        Vector2 knifeDirection = PlayerDirection.normalized;
+                        bulletHandler.SpawnBullet(BulletTypes.Knife, transform.position, playerStats, knifeDirection);
+                    }
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -62,6 +85,9 @@ public class WeaponHandler : MonoBehaviour
                 break;
             case WeaponTypes.Shotgun:
                 currentWeapons.Add(new Weapon { weaponType = WeaponTypes.Shotgun, damage = 12 });
+                break;
+            case WeaponTypes.Knife:
+                currentWeapons.Add(new Weapon { weaponType = WeaponTypes.Knife, damage = 18 });
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
