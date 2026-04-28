@@ -14,8 +14,6 @@ public class elonmovement : MonoBehaviour
 
     void Update()
     {
-        if (player == null) return;
-
         float direction = player.transform.position.x - transform.position.x;
 
         // Always face player
@@ -26,7 +24,7 @@ public class elonmovement : MonoBehaviour
         // ONLY try to dash, no constant movement
         if (!isDashing && distance < 80f && Random.value > dashChance)
         {
-            StartCoroutine(Dash(Mathf.Sign(direction)));
+            StartCoroutine(Dash(Mathf.Sign(direction))); // Dash towards player work by using the sign of the direction to determine left or right
         }
     }
 
