@@ -57,6 +57,7 @@ public class elonHealth : MonoBehaviour
         }
     }
 
+
     private void UpdateHealthBar()
     {
         if (healthImage == null) return;
@@ -84,5 +85,12 @@ public class elonHealth : MonoBehaviour
     public void elondeathsound()
     {
         sfxManager.PlayElonDeath();
+    }
+
+    private void spawnElon()
+    {
+        elonBoss.SetActive(true);
+        currentHealth = maxHealth;
+        UpdateHealthBar();
     }
 }

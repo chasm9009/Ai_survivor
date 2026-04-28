@@ -106791,7 +106791,7 @@ MonoBehaviour:
   dogecoinPrefab: {fileID: 2988643783488499838, guid: 57e39fdadf3f4fd429f52c52ad52e7a2, type: 3}
   projectileSpeed: 20
   projectileCount: 16
-  delayBetweenShots: 0.4
+  delayBetweenShots: 0.15
   projectileLifetime: 1.5
   sfxManager: {fileID: 51385421}
   voicelineCooldown: 3
