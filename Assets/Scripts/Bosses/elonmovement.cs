@@ -9,7 +9,7 @@ public class elonmovement : MonoBehaviour
     [SerializeField] public float dashSpeed = 15f;
     [SerializeField] private float dashDuration = 0.25f;
     [SerializeField] public float dashChance = 0.995f;
-    [SerializeField] private float yTeleportThreshold = 5f;
+    [SerializeField] private float yTeleportThreshold;
 
     public elonattacks elonattacks;
 
@@ -21,11 +21,17 @@ public class elonmovement : MonoBehaviour
 
         if (yDistance > yTeleportThreshold)
         {
-            TeleportToPlayer();
-            if (Random.Range(0f, 1f) > 0.99f)
+            TeleportToPlayer();       
             {
-                Debug.Log("ELON USED STARLINK TO TELEPORT TO PLAYER WATCH OUT HE IS EXTRA FAST AND MAD");
-                elonattacks.SpeedBoost();
+            float side = Random.value > 0.5f ? 1f : -1f;
+            float xOffset = side * Random.Range(5f, 15f);
+
+            transform.position = new Vector3(
+                player.transform.position.x + xOffset,
+                player.transform.position.y,
+                transform.position.z
+            );
+            Debug.Log($"📡 STARLINK TELEPORT — new X: {transform.position.x}");
             }
         }
 
