@@ -64,11 +64,11 @@ public class markHealth : MonoBehaviour
 
         float progress = (float)currentHealth / maxHealth;
 
-        if (progress >= 1f)         healthImage.sprite = health100;
+        if (progress >= 1f) healthImage.sprite = health100;
         else if (progress >= 0.75f) healthImage.sprite = health75;
-        else if (progress >= 0.5f)  healthImage.sprite = health50;
+        else if (progress >= 0.5f) healthImage.sprite = health50;
         else if (progress >= 0.25f) healthImage.sprite = health25;
-        else                        healthImage.sprite = health0;
+        else healthImage.sprite = health0;
     }
 
     public void markDYING()
@@ -87,7 +87,7 @@ public class markHealth : MonoBehaviour
         sfxManager.PlayMarkDeath();
     }
 
-    private void spawnMark()
+    public void spawnMark()
     {
         markBoss.SetActive(true);
         currentHealth = maxHealth;

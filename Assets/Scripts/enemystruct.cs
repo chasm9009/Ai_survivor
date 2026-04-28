@@ -58,9 +58,11 @@ public class enemystruct : MonoBehaviour
             if (enemyStats.currentHealth <= 0)
             {
                 Die();
-
             }
         }
+    }
+    public void OnTriggerStay2D(UnityEngine.Collider2D collision)
+    {
         if (collision.gameObject.CompareTag("Player"))
         {
             damagePlayer(enemyStats.damage);
