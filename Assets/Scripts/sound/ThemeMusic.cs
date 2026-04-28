@@ -8,11 +8,14 @@ public class ThemeMusic : MonoBehaviour
       private EventInstance instance;
     [Range(0f, 1f)]
     public float currentEnergy;
+    public float volume = 1f;
+    public float lowHealth;
     
     void Start()
     {
         instance = RuntimeManager.CreateInstance(themeEvent);
         instance.start();
+        instance.setParameterByName("themeVolume", volume);
     }
 
     public void SetEnergy(float value)
@@ -20,11 +23,18 @@ public class ThemeMusic : MonoBehaviour
         currentEnergy = Mathf.Lerp(currentEnergy, value, Time.deltaTime * 2f);
         instance.setParameterByName("Energy", currentEnergy);
     }
+     public void StartRinging(float value)
+    {
+        lowHealth = Mathf.Lerp(lowHealth, value, Time.deltaTime * 2f);
+        instance.setParameterByName("lowLife", lowHealth);
+    }
+  
 
     // Update is called once per frame
     void Update()
     {
         instance.setParameterByName(parameterName, currentEnergy);
+        instance.setParameterByName("themeVolume", volume);
     }
      private void OnDestroy()
     {
