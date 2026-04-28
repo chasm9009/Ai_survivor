@@ -1,11 +1,12 @@
 using System.Runtime.Serialization;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class playerMovement : MonoBehaviour
 {
 
-    private Stats playerStats;
+    public Stats playerStats;
     //insert Upgrades
     [SerializeField]
     private WeaponHandler weaponHandler;
@@ -17,6 +18,7 @@ public class playerMovement : MonoBehaviour
 
     [SerializeField] private ScoreHolder scoreHolder;
     [SerializeField] private HealthBar healthBar;
+    [SerializeField] private HintQuizController hintQuizController;
     [SerializeField] private SfxManager sfxManager;
 
     // Update is called once per frame
@@ -49,7 +51,7 @@ public class playerMovement : MonoBehaviour
             if (lastDirection == null || lastDirection == Vector2.zero)
             {
                 weaponHandler.UpdateWeapons(playerStats, weaponHandler.bulletHandler, Time.fixedDeltaTime, Vector2.right);
-                return; // No movement and no last direction, so skip firing
+                return;
             }
             weaponHandler.UpdateWeapons(playerStats, weaponHandler.bulletHandler, Time.fixedDeltaTime, lastDirection);
             return;
@@ -98,6 +100,7 @@ public class playerMovement : MonoBehaviour
         playerStats.XP = 0;
         playerStats.XPToNextLevel = playerStats.XPToNextLevel * 1.2f; // Increase target XP for next level
         // Here you can also increase player stats or unlock new abilities based on the new level
+        hintQuizController.OnLevelUp();
         Debug.Log("Leveled Up! Current Level: " + playerStats.Level);
         sfxManager.PlayLevelUp();
     }
