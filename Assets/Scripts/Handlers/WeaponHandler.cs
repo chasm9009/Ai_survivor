@@ -6,6 +6,7 @@ public class WeaponHandler : MonoBehaviour
 {
     public BulletHandler bulletHandler;
     public List<Weapon> currentWeapons = new List<Weapon>();
+
     public void UpdateWeapons(Stats playerStats, BulletHandler bulletHandler, float deltaTime, Vector2 PlayerDirection)
     {
         foreach (var weapon in currentWeapons)
@@ -17,6 +18,7 @@ public class WeaponHandler : MonoBehaviour
                     Vector2 pistolInaccuracy = UnityEngine.Random.insideUnitCircle * 0.1f;
                     Vector2 pistolDirection = (PlayerDirection + pistolInaccuracy).normalized;
                     // Execute pistol behavior
+                    
                     if (Pistol.Fire(playerStats, deltaTime))
                     {
                         bulletHandler.SpawnBullet(BulletTypes.Pistol, transform.position, playerStats, pistolDirection);
