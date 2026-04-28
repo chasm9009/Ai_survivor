@@ -9,5 +9,5 @@ public class EnemyStats
     public float speed;
     public int damage;
     public int range;
-    public XpTypes xpType;
+    public float xpamount;
 }

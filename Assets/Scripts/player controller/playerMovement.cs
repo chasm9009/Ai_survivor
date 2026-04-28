@@ -15,6 +15,9 @@ public class playerMovement : MonoBehaviour
     [SerializeField] public InputActionReference moveInput;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
+    [SerializeField] private ScoreHolder scoreHolder;
+    [SerializeField] private HealthBar healthBar;
+
     // Update is called once per frame
     private void Update()
     {
@@ -64,11 +67,35 @@ public class playerMovement : MonoBehaviour
         playerStats.CurrentHealth -= damage;
         playerStats.CurrentHealth = Mathf.Clamp(playerStats.CurrentHealth, 0, playerStats.MaxHealth);
         // Update health bar here if you have a reference to it
+        Debug.Log("Damage " + damage);
+        Debug.Log("CurrentHealth " + playerStats.CurrentHealth);
+        Debug.Log("CurrentHealth " + playerStats.MaxHealth);
+        healthBar.UpdateHealthBar(playerStats.CurrentHealth, playerStats.MaxHealth);
         if (playerStats.CurrentHealth <= 0)
         {
             // Handle player death (e.g., disable movement, play animation, etc.)
             Debug.Log("Player has died!");
         }
+
         timeSinceLastHit = Time.time; // Reset invulnerability timer
     }
+
+    public void GainXP(float xp)
+    {
+        playerStats.XP += xp;
+        if (playerStats.XP >= playerStats.XPToNextLevel)
+        {
+            LevelUp();
+        }
+        scoreHolder.UpdateXPBar(playerStats.Level, playerStats.XP, playerStats.XPToNextLevel);
+    }
+    public void LevelUp()
+    {
+        playerStats.Level++;
+        playerStats.XP = 0;
+        playerStats.XPToNextLevel = playerStats.XPToNextLevel * 1.2f; // Increase target XP for next level
+        // Here you can also increase player stats or unlock new abilities based on the new level
+        Debug.Log("Leveled Up! Current Level: " + playerStats.Level);
+    }
+
 }

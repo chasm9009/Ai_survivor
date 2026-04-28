@@ -6,6 +6,7 @@ public class enemystruct : MonoBehaviour
 {
     public EnemyStats enemyStats;
     public GameObject player;
+    public playerMovement playerMovement;
     public Rigidbody2D enemybody;
     [SerializeField] private float speed = 0.003f;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -14,6 +15,7 @@ public class enemystruct : MonoBehaviour
     private void Start()
     {
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        playerMovement = playerObject.GetComponent<Hitbox>().playerMovement;
         if (playerObject != null)
         {
             player = playerObject;
@@ -52,8 +54,23 @@ public class enemystruct : MonoBehaviour
             enemyStats.currentHealth -= bulletComponent.damage;
             if (enemyStats.currentHealth <= 0)
             {
-                enemyHandler.DespawnEnemy(gameObject);
+                Die();
+
             }
         }
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            damagePlayer(enemyStats.damage);
+        }
+    }
+    private void Die()
+    {
+        //give player xp and despawn
+        playerMovement.GainXP(enemyStats.xpamount);
+        enemyHandler.DespawnEnemy(gameObject);
+    }
+    private void damagePlayer(int damage)
+    {
+        playerMovement.TakeDamage(damage);
     }
 }

@@ -14024,6 +14024,7 @@ GameObject:
   - component: {fileID: 470145690}
   - component: {fileID: 470145692}
   - component: {fileID: 470145691}
+  - component: {fileID: 470145693}
   m_Layer: 5
   m_Name: XP Bar Background
   m_TagString: Untagged
@@ -14090,6 +14091,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 470145689}
   m_CullTransparentMesh: 1
+--- !u!114 &470145693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470145689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c6043b834a9af4ca799b392ccf9d6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreHolder
+  currentLevelText: {fileID: 1193482330}
+  xpText: {fileID: 0}
+  xpImage: {fileID: 1969020030}
+  xp0: {fileID: -2944243802849166431, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
+  xp25: {fileID: -3196215182155280146, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
+  xp50: {fileID: -2159092337048555947, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
+  xp75: {fileID: -1558173570600255707, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
+  xp100: {fileID: 547354065027947891, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
+  targetXP: 100
+  targetXPIncrease: 25
 --- !u!1 &481884651
 GameObject:
   m_ObjectHideFlags: 0
