@@ -94,11 +94,15 @@ public class playerMovement : MonoBehaviour
     public void LevelUp()
     {
         playerStats.Level++;
+        weaponHandler.AddBasedOnLevel(playerStats.Level);
         playerStats.XP = 0;
         playerStats.XPToNextLevel = playerStats.XPToNextLevel * 1.2f; // Increase target XP for next level
         // Here you can also increase player stats or unlock new abilities based on the new level
         Debug.Log("Leveled Up! Current Level: " + playerStats.Level);
         sfxManager.PlayLevelUp();
     }
+    public void LevelUpDebug()
+    {
 
+    }
 }

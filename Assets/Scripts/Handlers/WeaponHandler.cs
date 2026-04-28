@@ -67,4 +67,21 @@ public class WeaponHandler : MonoBehaviour
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
     }
+    public void AddBasedOnLevel(int level)
+    {
+        switch (level)
+        {
+            case 3:
+            //add shotgun
+            case 5:
+                AddWeapon(WeaponTypes.Rifle);
+                break;
+            case 7:
+                AddWeapon(WeaponTypes.Shotgun);
+                break;
+            default:
+                break;
+        }
+    }
+
 }
