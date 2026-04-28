@@ -19,13 +19,14 @@ public class HintQuizController : MonoBehaviour
     public Button AnswerButton_C;
     public Button AnswerButton_D;
 
+    [Header("Upgrade Screen")]
+    [SerializeField] private GameObject UpgradeScreen;
+
     private List<string> unansweredQuestions = new List<string>();
     private string currentQuestion;
-
-    // Original button colors
     private Color normalColor;
 
-    private void Start()
+    public void Awake()
     {
         foreach (string key in HintArray.hintDictionary.Keys)
             unansweredQuestions.Add(key);
@@ -66,7 +67,7 @@ public class HintQuizController : MonoBehaviour
 
     private IEnumerator HintTimer()
     {
-        yield return new WaitForSecondsRealtime(0.7f); // 700ms real time
+        yield return new WaitForSecondsRealtime(10f);
         ResumeGame();
     }
 
@@ -75,16 +76,23 @@ public class HintQuizController : MonoBehaviour
         HintScreen.SetActive(false);
         QuizScreen.SetActive(true);
 
+        // Make sure all quiz elements are visible
+        QuizQuestion.gameObject.SetActive(true);
         AnswerButton_A.gameObject.SetActive(true);
         AnswerButton_B.gameObject.SetActive(true);
         AnswerButton_C.gameObject.SetActive(true);
         AnswerButton_D.gameObject.SetActive(true);
 
-        // Reset button colors
+        // Reset button colors and interactivity
         SetButtonColor(AnswerButton_A, normalColor);
         SetButtonColor(AnswerButton_B, normalColor);
         SetButtonColor(AnswerButton_C, normalColor);
         SetButtonColor(AnswerButton_D, normalColor);
+
+        AnswerButton_A.interactable = true;
+        AnswerButton_B.interactable = true;
+        AnswerButton_C.interactable = true;
+        AnswerButton_D.interactable = true;
 
         string[] data = HintArray.hintDictionary[spørgsmål];
         QuizQuestion.text = spørgsmål;
@@ -107,7 +115,6 @@ public class HintQuizController : MonoBehaviour
 
     private void CheckAnswer(Button pressedButton, string selectedAnswer, string spørgsmål)
     {
-        // Disable all buttons immediately so player cant click again
         AnswerButton_A.interactable = false;
         AnswerButton_B.interactable = false;
         AnswerButton_C.interactable = false;
@@ -118,36 +125,51 @@ public class HintQuizController : MonoBehaviour
 
         if (selectedAnswer == correctAnswer)
         {
-            SetButtonColor(pressedButton, new Color(0.4f, 0.8f, 0.4f)); // green
+            SetButtonColor(pressedButton, new Color(0.4f, 0.8f, 0.4f));
             unansweredQuestions.Remove(spørgsmål);
+
+            // Hide quiz elements but keep QuizScreen and background active
+            QuizQuestion.gameObject.SetActive(false);
+            AnswerButton_A.gameObject.SetActive(false);
+            AnswerButton_B.gameObject.SetActive(false);
+            AnswerButton_C.gameObject.SetActive(false);
+            AnswerButton_D.gameObject.SetActive(false);
+
+            UpgradeScreen.SetActive(true);
         }
         else
         {
-            SetButtonColor(pressedButton, new Color(0.8f, 0.4f, 0.4f)); // red
+            SetButtonColor(pressedButton, new Color(0.8f, 0.4f, 0.4f));
             if (correctButton != null)
-                SetButtonColor(correctButton, new Color(0.4f, 0.8f, 0.4f)); // show correct in green
+                SetButtonColor(correctButton, new Color(0.4f, 0.8f, 0.4f));
+            StartCoroutine(QuizResultTimer());
         }
-
-        StartCoroutine(QuizResultTimer());
     }
 
     private IEnumerator QuizResultTimer()
     {
-        yield return new WaitForSecondsRealtime(0.5f); // 500ms real time
+        yield return new WaitForSecondsRealtime(5f);
+        ResumeGame();
+    }
 
-        // Re-enable buttons for next time
+    public void ResumeGame()
+    {
+        HintScreen.SetActive(false);
+        QuizScreen.SetActive(false);
+        UpgradeScreen.SetActive(false);
+
+        // Re-enable quiz elements for next time
+        QuizQuestion.gameObject.SetActive(true);
+        AnswerButton_A.gameObject.SetActive(true);
+        AnswerButton_B.gameObject.SetActive(true);
+        AnswerButton_C.gameObject.SetActive(true);
+        AnswerButton_D.gameObject.SetActive(true);
+
         AnswerButton_A.interactable = true;
         AnswerButton_B.interactable = true;
         AnswerButton_C.interactable = true;
         AnswerButton_D.interactable = true;
 
-        ResumeGame();
-    }
-
-    private void ResumeGame()
-    {
-        HintScreen.SetActive(false);
-        QuizScreen.SetActive(false);
         Time.timeScale = 1f;
     }
 
