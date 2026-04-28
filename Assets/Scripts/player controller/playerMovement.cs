@@ -2,6 +2,7 @@ using System.Runtime.Serialization;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class playerMovement : MonoBehaviour
 {
@@ -78,6 +79,7 @@ public class playerMovement : MonoBehaviour
             // Handle player death (e.g., disable movement, play animation, etc.)
             Debug.Log("Player has died!");
             sfxManager.PlayPlayerDeath();
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
 
         timeSinceLastHit = Time.time; // Reset invulnerability timer
@@ -95,6 +97,7 @@ public class playerMovement : MonoBehaviour
     }
     public void LevelUp()
     {
+        playerStats.CurrentHealth = playerStats.MaxHealth;
         playerStats.Level++;
         weaponHandler.AddBasedOnLevel(playerStats.Level);
         playerStats.XP = 0;
