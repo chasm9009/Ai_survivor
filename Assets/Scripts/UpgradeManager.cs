@@ -29,7 +29,7 @@ public class UpgradeManager : MonoBehaviour
 
     private void UpgradeSpeed()
     {
-        //player.playerStats.speed *= 1.1f;
+        player.playerStats.speed *= 1.1f;
         CloseUpgradeScreen();
     }
 

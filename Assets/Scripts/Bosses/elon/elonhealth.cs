@@ -87,7 +87,7 @@ public class elonHealth : MonoBehaviour
         sfxManager.PlayElonDeath();
     }
 
-    private void spawnElon()
+    public void spawnElon()
     {
         elonBoss.SetActive(true);
         currentHealth = maxHealth;

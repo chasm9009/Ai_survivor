@@ -1,0 +1,55 @@
+{
+    "version": 1,
+    "name": "PlayerControlelr",
+    "maps": [
+        {
+            "name": "Controls",
+            "id": "17096266-ce4e-4dd2-b27f-2b3d050db838",
+            "actions": [
+                {
+                    "name": "move",
+                    "type": "Value",
+                    "id": "82111fec-1d5d-4376-9e0e-58a434a8d4e3",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "DebugLevelUp",
+                    "type": "Button",
+                    "id": "ec3d423c-7b45-496a-938b-ab83f8246285",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4ac8d4d3-953c-4c35-aedb-a382b09ae996",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "541cd640-840e-4010-8479-cc4b8fd21db8",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DebugLevelUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

@@ -13,6 +13,8 @@ public class markMovement : MonoBehaviour
 
     public markAttacks markAttacks;
 
+    [SerializeField] private markHealth markHealth;
+    [SerializeField] private playerMovement playerMovement;
     private bool isDashing = false;
 
     void Update()
@@ -21,17 +23,17 @@ public class markMovement : MonoBehaviour
 
         if (yDistance > yTeleportThreshold)
         {
-            TeleportToPlayer();       
+            TeleportToPlayer();
             {
-            float side = Random.value > 0.5f ? 1f : -1f;
-            float xOffset = side * Random.Range(5f, 15f);
+                float side = Random.value > 0.5f ? 1f : -1f;
+                float xOffset = side * Random.Range(5f, 15f);
 
-            transform.position = new Vector3(
-                player.transform.position.x + xOffset,
-                player.transform.position.y,
-                transform.position.z
-            );
-            Debug.Log($"📡 STARLINK TELEPORT — new X: {transform.position.x}");
+                transform.position = new Vector3(
+                    player.transform.position.x + xOffset,
+                    player.transform.position.y,
+                    transform.position.z
+                );
+                Debug.Log($"📡 STARLINK TELEPORT — new X: {transform.position.x}");
             }
         }
 
@@ -78,5 +80,29 @@ public class markMovement : MonoBehaviour
         }
 
         isDashing = false;
+    }
+    public void OnTriggerEnter2D(UnityEngine.Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("bullet"))
+        {
+            Debug.Log("Bullet hit mark");
+            //get bullet manager component and call despawn bullet function
+            BulletHandler bulletHandler = FindObjectOfType<BulletHandler>();
+            bulletHandler.DespawnBullet(collision.gameObject);
+            var bulletComponent = collision.gameObject.GetComponent<Bullet>();
+
+            markHealth.TakeDamage(bulletComponent.damage);
+        }
+    }
+    public void OnTriggerStay2D(UnityEngine.Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            damagePlayer(30);
+        }
+    }
+    private void damagePlayer(int damage)
+    {
+        playerMovement.TakeDamage(damage);
     }
 }

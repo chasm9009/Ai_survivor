@@ -18,7 +18,7 @@ public class WeaponHandler : MonoBehaviour
                     Vector2 pistolInaccuracy = UnityEngine.Random.insideUnitCircle * 0.1f;
                     Vector2 pistolDirection = (PlayerDirection + pistolInaccuracy).normalized;
                     // Execute pistol behavior
-                    
+
                     if (Pistol.Fire(playerStats, deltaTime))
                     {
                         bulletHandler.SpawnBullet(BulletTypes.Pistol, transform.position, playerStats, pistolDirection);
@@ -69,4 +69,21 @@ public class WeaponHandler : MonoBehaviour
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
     }
+    public void AddBasedOnLevel(int level)
+    {
+        switch (level)
+        {
+            case 3:
+            //add knife
+            case 5:
+                AddWeapon(WeaponTypes.Rifle);
+                break;
+            case 7:
+                AddWeapon(WeaponTypes.Shotgun);
+                break;
+            default:
+                break;
+        }
+    }
+
 }

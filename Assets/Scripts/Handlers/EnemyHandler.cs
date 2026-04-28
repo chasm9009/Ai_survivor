@@ -15,7 +15,10 @@ public class EnemyHandler : MonoBehaviour
 
     public GameObject player;
     [SerializeField] private ThemeMusic themeMusic;
-    public void Start()
+    [SerializeField] private elonHealth elonHealth;
+    [SerializeField] private markHealth markHealth;
+
+    public void Awake()
     {
         enemyPool = new ObjectPool<GameObject>(
             createFunc: () => Instantiate(EnemyPrefab),
@@ -28,22 +31,43 @@ public class EnemyHandler : MonoBehaviour
         );
     }
     // 2 minute spawn with 5 second intervals, can be adjusted for testing 
+
+    bool markSpawned = false;
+    bool elonSpawned = false;
     public void FixedUpdate()
     {
 
-        if (currentEnemies.Count < 50) 
+        if (currentEnemies.Count < 50)
         {
-            if (Time.time > 120f)
+            if (Time.time > 300f)
             {
-                CircleSpawnEnemies(60f, 2f, Time.fixedDeltaTime);
+                Debug.Log("spawn elon");
+                if (!elonSpawned)
+                {
+                    elonSpawned = true;
+                    elonHealth.spawnElon();
+                }
+
+            }
+            else if (Time.time > 120f)
+            {
+                Debug.Log("spawn mark");
+                if (!markSpawned)
+                {
+                    markSpawned = true;
+                    markHealth.spawnMark();
+                }
+                CircleSpawnEnemies(50f, 1f, Time.fixedDeltaTime);
             }
             else if (Time.time > 60f)
             {
-                CircleSpawnEnemies(40f, 3f, Time.fixedDeltaTime);
+                Debug.Log("spawn more advanced");
+                CircleSpawnEnemies(30f, 1f, Time.fixedDeltaTime);
             }
             else
             {
-                CircleSpawnEnemies(20f, 5f, Time.fixedDeltaTime);
+                Debug.Log("spawn basic");
+                CircleSpawnEnemies(20f, 2f, Time.fixedDeltaTime);
             }
         }
         UpdateEnemies();

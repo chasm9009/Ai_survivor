@@ -2,6 +2,7 @@ using System.Runtime.Serialization;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class playerMovement : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class playerMovement : MonoBehaviour
     private void Update()
     {
         Vector2 moveDirection = moveInput.action.ReadValue<Vector2>();
-        transform.Translate(new Vector2(moveDirection.x, moveDirection.y) * speed * Time.deltaTime);
+        transform.Translate(new Vector2(moveDirection.x, moveDirection.y) * playerStats.speed * Time.deltaTime);
 
         if (moveDirection.x < 0)
         {
@@ -41,9 +42,7 @@ public class playerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerStats = InitPlayerStats.InitializePlayerStats();
         weaponHandler = GetComponent<WeaponHandler>();
-        sfxManager = GetComponent<SfxManager>();
         weaponHandler.AddWeapon(WeaponTypes.Pistol);
-
     }
     Vector2 lastDirection;
     private void FixedUpdate()
@@ -60,7 +59,7 @@ public class playerMovement : MonoBehaviour
         }
         lastDirection = moveInput.action.ReadValue<Vector2>();
         weaponHandler.UpdateWeapons(playerStats, weaponHandler.bulletHandler, Time.fixedDeltaTime, lastDirection);
-    }   
+    }
     float timeSinceLastHit = 0f;
     public void TakeDamage(int damage)
     {
@@ -80,6 +79,7 @@ public class playerMovement : MonoBehaviour
             // Handle player death (e.g., disable movement, play animation, etc.)
             Debug.Log("Player has died!");
             sfxManager.PlayPlayerDeath();
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
 
         timeSinceLastHit = Time.time; // Reset invulnerability timer
@@ -93,19 +93,21 @@ public class playerMovement : MonoBehaviour
             LevelUp();
         }
         scoreHolder.UpdateXPBar(playerStats.Level, playerStats.XP, playerStats.XPToNextLevel);
-        
+
     }
     public void LevelUp()
     {
+        playerStats.CurrentHealth = playerStats.MaxHealth;
         playerStats.Level++;
+        weaponHandler.AddBasedOnLevel(playerStats.Level);
         playerStats.XP = 0;
-        playerStats.XPToNextLevel = playerStats.XPToNextLevel * 1.2f; // Increase target XP for next level
+        playerStats.XPToNextLevel = playerStats.XPToNextLevel * 1.7f; // Increase target XP for next level
         // Here you can also increase player stats or unlock new abilities based on the new level
-        hintQuizController.OnLevelUp();     
+        hintQuizController.OnLevelUp();
         Debug.Log("Leveled Up! Current Level: " + playerStats.Level);
         sfxManager.PlayLevelUp();
     }
-    public void OnLevelUpDebug()
+    public void OnDebugLevelUp()
     {
         LevelUp();
     }

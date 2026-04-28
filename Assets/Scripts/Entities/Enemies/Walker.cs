@@ -17,10 +17,10 @@ public static class Walker
     {
         EnemyStats stats = new EnemyStats();
         stats.enemyType = EnemyTypes.Walker;
-        stats.maxHealth = 100;
-        stats.currentHealth = 100;
-        stats.speed = 1f;
-        stats.xpamount = 10f;
+        stats.maxHealth = 30;
+        stats.currentHealth = 30;
+        stats.speed = 1.7f;
+        stats.xpamount = 50f;
         stats.damage = 10;
         Debug.Log($"Initialized Walker stats: Health={stats.currentHealth}, Speed={stats.speed}");
         return stats;
