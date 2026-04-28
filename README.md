@@ -8,4 +8,4 @@
 ### rkirke25@student.aau.dk
 
 
-To play the game open scene x, in the game view change to simulate, using an samsung 8s and filp it sideways. Then press play.
+To play the game open the IntroScene scene, in the game view change to simulate, using a samsung 8s and filp it sideways. Then press play.
