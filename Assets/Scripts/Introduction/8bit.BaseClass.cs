@@ -16,7 +16,7 @@ namespace DialougeSystem
             for (int i = 0; i < input.Length; i++)
             {
                 textHolder.text += input[i];
-                yield return new WaitForSeconds(0.035f);
+                yield return new WaitForSeconds(0.065f);
             }
         }
     }
