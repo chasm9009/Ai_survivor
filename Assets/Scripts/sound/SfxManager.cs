@@ -20,6 +20,8 @@ public class SfxManager : MonoBehaviour
     [SerializeField] private EventReference markQuotes;
     [SerializeField] private EventReference markDeath;
 
+    [SerializeField] private EventReference elonIntro;
+
     private EventInstance elonQuotesInstance;
     private EventInstance markQuotesInstance;
 
@@ -34,6 +36,11 @@ public class SfxManager : MonoBehaviour
     {
         RuntimeManager.PlayOneShot(playerDeath);
     }
+        public void ElonIntro()
+    {
+        RuntimeManager.PlayOneShot(elonIntro);
+    }
+
 
     public void PlayEnemyDeath()
     {

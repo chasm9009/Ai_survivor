@@ -208,6 +208,7 @@ GameObject:
   - component: {fileID: 236365533}
   - component: {fileID: 236365535}
   - component: {fileID: 236365534}
+  - component: {fileID: 236365536}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -272,6 +273,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 236365532}
   m_CullTransparentMesh: 1
+--- !u!95 &236365536
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236365532}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 57184011cc8577e46b3ca4372778ec83, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &382182678
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,6 +449,121 @@ MonoBehaviour:
     to take over the world. So time to lock in, no more jeestermaxing, you are humanities
     last hope. So defeat the brainrot underlings survive the waves of AI overlords
   tmp_Font: {fileID: 11400000, guid: fa38137b5b55c684d899e34d16b89059, type: 2}
+  sfxManager: {fileID: 446240990}
+--- !u!1 &446240988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 446240989}
+  - component: {fileID: 446240990}
+  m_Layer: 0
+  m_Name: sfxManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &446240989
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446240988}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1522449087}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &446240990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446240988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62279abe4389b44b5b1d3618590199f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SfxManager
+  playerDeath:
+    Guid:
+      Data1: 1163140621
+      Data2: 1089497916
+      Data3: -1776716105
+      Data4: -1700907727
+    Path: event:/player death
+  enemyDeath:
+    Guid:
+      Data1: -402812412
+      Data2: 1084204555
+      Data3: 1843848848
+      Data4: 1436017893
+    Path: event:/enemy death
+  bossDeath:
+    Guid:
+      Data1: -1690142900
+      Data2: 1099482587
+      Data3: 621317525
+      Data4: -1553878731
+    Path: event:/boss clear
+  levelUp:
+    Guid:
+      Data1: 2044250258
+      Data2: 1264206970
+      Data3: 392124545
+      Data4: -1560793025
+    Path: event:/levelup
+  hoverButton:
+    Guid:
+      Data1: 207072583
+      Data2: 1273276782
+      Data3: 1763585179
+      Data4: -53326502
+    Path: event:/UI hover
+  elonQuotes:
+    Guid:
+      Data1: 1156474966
+      Data2: 1260235925
+      Data3: -558700397
+      Data4: 1634157434
+    Path: event:/elon/elon
+  elonDeath:
+    Guid:
+      Data1: 1625423668
+      Data2: 1309726004
+      Data3: 607822263
+      Data4: 694906814
+    Path: event:/elon/elon death
+  markQuotes:
+    Guid:
+      Data1: 49974546
+      Data2: 1140936452
+      Data3: -454738285
+      Data4: -433120998
+    Path: event:/Mark/markquotes
+  markDeath:
+    Guid:
+      Data1: -1357492873
+      Data2: 1196596235
+      Data3: -1273822786
+      Data4: 1561402046
+    Path: event:/Mark/markdeath
+  elonIntro:
+    Guid:
+      Data1: -656788040
+      Data2: 1199468777
+      Data3: -446377056
+      Data4: -879634352
+    Path: event:/intro speak
 --- !u!1 &644082388
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,8 +967,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1404252319}
   - component: {fileID: 1404252318}
-  - component: {fileID: 1404252317}
   - component: {fileID: 1404252320}
+  - component: {fileID: 1404252321}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -838,14 +976,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1404252317
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1404252316}
-  m_Enabled: 1
 --- !u!20 &1404252318
 Camera:
   m_ObjectHideFlags: 0
@@ -956,6 +1086,152 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &1404252321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404252316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioListener
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
+--- !u!1 &1522449086
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1522449087}
+  m_Layer: 0
+  m_Name: Sounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1522449087
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522449086}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.10618, y: 0.09912, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1621865079}
+  - {fileID: 446240989}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1621865078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1621865079}
+  - component: {fileID: 1621865081}
+  - component: {fileID: 1621865080}
+  m_Layer: 0
+  m_Name: bulletSoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1621865079
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621865078}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1522449087}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1621865080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621865078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8224c828489b441458c81c68710089ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletSound
+  pistolShot:
+    Guid:
+      Data1: 327137373
+      Data2: 1258677034
+      Data3: -1738966347
+      Data4: -584816181
+    Path: event:/attacks/gunshot
+  energyShock:
+    Guid:
+      Data1: -1481937728
+      Data2: 1220856409
+      Data3: -249246542
+      Data4: 952636035
+    Path: event:/attacks/energyshock
+  knifeSwing:
+    Guid:
+      Data1: -823003180
+      Data2: 1173922061
+      Data3: -316401251
+      Data4: 691544027
+    Path: event:/attacks/knife
+--- !u!114 &1621865081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621865078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5847435b5c95f44938a8cc4ee5d69f15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletSound
+  pistolShot:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  energyShock:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  knifeSwing:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &1795562845
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,3 +1343,4 @@ SceneRoots:
   - {fileID: 1795562849}
   - {fileID: 1013113287}
   - {fileID: 1323391180}
+  - {fileID: 1522449087}
