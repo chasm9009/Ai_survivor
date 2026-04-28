@@ -18,6 +18,7 @@ public class HintQuizController : MonoBehaviour
     public Button AnswerButton_B;
     public Button AnswerButton_C;
     public Button AnswerButton_D;
+    [SerializeField] private GameObject UpgradeScreen;
 
     private List<string> unansweredQuestions = new List<string>();
     private string currentQuestion;
@@ -25,7 +26,7 @@ public class HintQuizController : MonoBehaviour
     // Original button colors
     private Color normalColor;
 
-    private void Start()
+    public void Awake()
     {
         foreach (string key in HintArray.hintDictionary.Keys)
             unansweredQuestions.Add(key);
@@ -66,7 +67,7 @@ public class HintQuizController : MonoBehaviour
 
     private IEnumerator HintTimer()
     {
-        yield return new WaitForSecondsRealtime(0.7f); // 700ms real time
+        yield return new WaitForSecondsRealtime(10f); // 10 seconds real time
         ResumeGame();
     }
 
@@ -120,6 +121,8 @@ public class HintQuizController : MonoBehaviour
         {
             SetButtonColor(pressedButton, new Color(0.4f, 0.8f, 0.4f)); // green
             unansweredQuestions.Remove(spørgsmål);
+            QuizScreen.SetActive(false);
+            UpgradeScreen.SetActive(true); // show upgrades, keep game paused
         }
         else
         {
@@ -133,7 +136,7 @@ public class HintQuizController : MonoBehaviour
 
     private IEnumerator QuizResultTimer()
     {
-        yield return new WaitForSecondsRealtime(0.5f); // 500ms real time
+        yield return new WaitForSecondsRealtime(5f); // 5 seconds real time
 
         // Re-enable buttons for next time
         AnswerButton_A.interactable = true;
