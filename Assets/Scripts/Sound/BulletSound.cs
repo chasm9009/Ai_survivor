@@ -6,6 +6,8 @@ public class BulletSound : MonoBehaviour
 {
     public BulletSound Instance;
      [SerializeField] private EventReference pistolShot;
+     [SerializeField] private EventReference energyShock;
+     [SerializeField] private EventReference knifeSwing;
   private void Awake()
     {
         Instance = this;
@@ -15,5 +17,14 @@ public class BulletSound : MonoBehaviour
     public void PlayBang()
     {
         RuntimeManager.PlayOneShot(pistolShot);
+    }
+
+    public void PlayEnergyShock()
+    {
+        RuntimeManager.PlayOneShot(energyShock);
+    }
+     public void PlayKnifeSwing()
+    {
+        RuntimeManager.PlayOneShot(knifeSwing);
     }
 }

@@ -202,7 +202,21 @@ MonoBehaviour:
       Data2: 1258677034
       Data3: -1738966347
       Data4: -584816181
-    Path: event:/gunshot
+    Path: event:/attacks/gunshot
+  energyShock:
+    Guid:
+      Data1: -1481937728
+      Data2: 1220856409
+      Data3: -249246542
+      Data4: 952636035
+    Path: event:/attacks/energyshock
+  knifeSwing:
+    Guid:
+      Data1: -823003180
+      Data2: 1173922061
+      Data3: -316401251
+      Data4: 691544027
+    Path: event:/attacks/knife
 --- !u!1 &297488605
 GameObject:
   m_ObjectHideFlags: 0
