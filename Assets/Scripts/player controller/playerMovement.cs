@@ -23,7 +23,7 @@ public class playerMovement : MonoBehaviour
     private void Update()
     {
         Vector2 moveDirection = moveInput.action.ReadValue<Vector2>();
-        transform.Translate(new Vector2(moveDirection.x, moveDirection.y) * speed * Time.deltaTime);
+        transform.Translate(new Vector2(moveDirection.x, moveDirection.y) * playerStats.speed * Time.deltaTime);
 
         if (moveDirection.x < 0)
         {

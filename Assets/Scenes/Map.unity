@@ -24369,7 +24369,7 @@ MonoBehaviour:
   currentEnemies: []
   EnemyPrefab: {fileID: 3387655510441309072, guid: 8991e413ee1abe447a77e861abeb797b, type: 3}
   player: {fileID: 1811915771}
-  themeMusic: {fileID: 0}
+  themeMusic: {fileID: 292775803}
 --- !u!4 &749828386
 Transform:
   m_ObjectHideFlags: 0
@@ -107926,6 +107926,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BulletHandler
   currentBullets: []
   pistolBulletPrefab: {fileID: 7747355875022275002, guid: 7ebe8d5f5c1cf6542a1519a36c0e582a, type: 3}
+  bulletSound1: {fileID: 1630291442}
 --- !u!114 &1811915774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108009,7 +108010,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1811915780}
   scoreHolder: {fileID: 470145693}
   healthBar: {fileID: 1648934771}
-  sfxManager: {fileID: 0}
+  sfxManager: {fileID: 1994004234}
 --- !u!70 &1811915778
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -122547,6 +122548,20 @@ MonoBehaviour:
       Data3: 1763585179
       Data4: -53326502
     Path: event:/UI hover
+  elonQuotes:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  elonDeath:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &2046103787
 GameObject:
   m_ObjectHideFlags: 0
