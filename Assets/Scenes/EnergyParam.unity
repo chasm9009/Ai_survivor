@@ -9917,6 +9917,8 @@ MonoBehaviour:
     Path: event:/theme
   parameterName: energy
   currentEnergy: 0
+  volume: 1
+  lowHealth: 0
 --- !u!1 &300909275
 GameObject:
   m_ObjectHideFlags: 0
@@ -106558,6 +106560,7 @@ MonoBehaviour:
   health50: {fileID: 5321405506712674580, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
   health75: {fileID: -3460609258686177541, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
   health100: {fileID: -7310718435115833628, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
+  themeMusic: {fileID: 292775803}
 --- !u!114 &1648934772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107870,6 +107873,8 @@ MonoBehaviour:
   speed: 5
   moveInput: {fileID: 7059520710146851063, guid: 61ea1d8b20bb9aa48b5e66a59017c1f8, type: 3}
   spriteRenderer: {fileID: 1811915780}
+  scoreHolder: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!70 &1811915778
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
