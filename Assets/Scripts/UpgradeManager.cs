@@ -23,7 +23,7 @@ public class UpgradeManager : MonoBehaviour
 
     private void UpgradeFireRate()
     {
-        player.playerStats.fireRate *= 0.9f; // lower = faster fire rate
+        player.playerStats.fireRate *= 0.9f;
         CloseUpgradeScreen();
     }
 
@@ -36,7 +36,7 @@ public class UpgradeManager : MonoBehaviour
     private void UpgradeMaxHealth()
     {
         player.playerStats.MaxHealth = (int)(player.playerStats.MaxHealth * 1.1f);
-        player.playerStats.CurrentHealth = player.playerStats.MaxHealth; // heal to new max
+        player.playerStats.CurrentHealth = player.playerStats.MaxHealth;
         CloseUpgradeScreen();
     }
 
@@ -48,7 +48,6 @@ public class UpgradeManager : MonoBehaviour
 
     private void CloseUpgradeScreen()
     {
-        gameObject.SetActive(false);
-        Time.timeScale = 1f;
+        hintQuizController.ResumeGame();
     }
 }
