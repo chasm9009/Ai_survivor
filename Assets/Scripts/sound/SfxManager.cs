@@ -11,15 +11,23 @@ public class SfxManager : MonoBehaviour
     [SerializeField] private EventReference bossDeath;
     [SerializeField] private EventReference levelUp;
     [SerializeField] private EventReference hoverButton;
+
+    [Header("Elon")]
     [SerializeField] private EventReference elonQuotes;
     [SerializeField] private EventReference elonDeath;
 
+    [Header("Mark")]
+    [SerializeField] private EventReference markQuotes;
+    [SerializeField] private EventReference markDeath;
+
     private EventInstance elonQuotesInstance;
+    private EventInstance markQuotesInstance;
 
     private void Awake()
     {
         Instance = this;
         elonQuotesInstance = RuntimeManager.CreateInstance(elonQuotes);
+        markQuotesInstance = RuntimeManager.CreateInstance(markQuotes);
     }
 
     public void PlayPlayerDeath()
@@ -47,6 +55,10 @@ public class SfxManager : MonoBehaviour
         RuntimeManager.PlayOneShot(bossDeath);
     }
 
+    // ================================
+    // ELON
+    // ================================
+
     public void PlayElonQuotes()
     {
         elonQuotesInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
@@ -63,9 +75,36 @@ public class SfxManager : MonoBehaviour
         RuntimeManager.PlayOneShot(elonDeath);
     }
 
+    // ================================
+    // MARK
+    // ================================
+
+    public void PlayMarkQuotes()
+    {
+        markQuotesInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        markQuotesInstance.start();
+    }
+
+    public void StopMarkQuotes()
+    {
+        markQuotesInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
+
+    public void PlayMarkDeath()
+    {
+        RuntimeManager.PlayOneShot(markDeath);
+    }
+
+    // ================================
+    // CLEANUP
+    // ================================
+
     private void OnDestroy()
     {
         elonQuotesInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         elonQuotesInstance.release();
+
+        markQuotesInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        markQuotesInstance.release();
     }
 }
