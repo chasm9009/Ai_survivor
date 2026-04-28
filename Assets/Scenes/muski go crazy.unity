@@ -3075,6 +3075,99 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &51385419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 51385420}
+  - component: {fileID: 51385421}
+  m_Layer: 0
+  m_Name: sfxManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &51385420
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51385419}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 691050625}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &51385421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51385419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62279abe4389b44b5b1d3618590199f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SfxManager
+  playerDeath:
+    Guid:
+      Data1: 1163140621
+      Data2: 1089497916
+      Data3: -1776716105
+      Data4: -1700907727
+    Path: event:/player death
+  enemyDeath:
+    Guid:
+      Data1: -402812412
+      Data2: 1084204555
+      Data3: 1843848848
+      Data4: 1436017893
+    Path: event:/enemy death
+  bossDeath:
+    Guid:
+      Data1: -1690142900
+      Data2: 1099482587
+      Data3: 621317525
+      Data4: -1553878731
+    Path: event:/boss clear
+  levelUp:
+    Guid:
+      Data1: 2044250258
+      Data2: 1264206970
+      Data3: 392124545
+      Data4: -1560793025
+    Path: event:/levelup
+  hoverButton:
+    Guid:
+      Data1: 207072583
+      Data2: 1273276782
+      Data3: 1763585179
+      Data4: -53326502
+    Path: event:/UI hover
+  elonQuotes:
+    Guid:
+      Data1: 1156474966
+      Data2: 1260235925
+      Data3: -558700397
+      Data4: 1634157434
+    Path: event:/elon/elon
+  elonDeath:
+    Guid:
+      Data1: 1625423668
+      Data2: 1309726004
+      Data3: 607822263
+      Data4: 694906814
+    Path: event:/elon/elon death
 --- !u!1 &80590338
 GameObject:
   m_ObjectHideFlags: 0
@@ -14056,7 +14149,7 @@ GameObject:
   - component: {fileID: 523466483}
   - component: {fileID: 523466486}
   - component: {fileID: 523466485}
-  - component: {fileID: 523466484}
+  - component: {fileID: 523466487}
   m_Layer: 5
   m_Name: Healthbar
   m_TagString: Untagged
@@ -14083,24 +14176,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.37, y: -2.39}
   m_SizeDelta: {x: 40, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &523466484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 523466482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0452dab6b1aff2743ad4af6ce3312a54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HealthBar
-  healthImage: {fileID: 523466485}
-  health0: {fileID: 2943928643792035061, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
-  health25: {fileID: -7046930102425164898, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
-  health50: {fileID: 2439555171015636904, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
-  health75: {fileID: -3920597624754421681, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
-  health100: {fileID: -1962623790705078186, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
 --- !u!114 &523466485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14139,6 +14214,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 523466482}
   m_CullTransparentMesh: 1
+--- !u!114 &523466487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523466482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2775f4ea93a0a874f9bcbd2c283395d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::elonHealth
+  healthImage: {fileID: 523466485}
+  elonAttacks: {fileID: 1645959516}
+  health0: {fileID: 2943928643792035061, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
+  health25: {fileID: -7046930102425164898, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
+  health50: {fileID: 2439555171015636904, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
+  health75: {fileID: -3920597624754421681, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
+  health100: {fileID: -1962623790705078186, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
+  maxHealth: 400
+  currentHealth: 400
+  sfxManager: {fileID: 51385421}
+  isDead: 0
+  elonBoss: {fileID: 1645959509}
 --- !u!1 &540225537
 GameObject:
   m_ObjectHideFlags: 0
@@ -20484,8 +20583,8 @@ GameObject:
   m_Component:
   - component: {fileID: 641483180}
   - component: {fileID: 641483183}
-  - component: {fileID: 641483182}
   - component: {fileID: 641483181}
+  - component: {fileID: 641483184}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -20552,14 +20651,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!81 &641483182
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 641483179}
-  m_Enabled: 1
 --- !u!20 &641483183
 Camera:
   m_ObjectHideFlags: 0
@@ -20611,6 +20702,20 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &641483184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641483179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioListener
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1 &643880296
 GameObject:
   m_ObjectHideFlags: 0
@@ -24444,6 +24549,39 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &691050624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 691050625}
+  m_Layer: 0
+  m_Name: Sounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &691050625
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691050624}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.10618, y: 0.09912, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1738601197}
+  - {fileID: 51385420}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &721277911
 GameObject:
   m_ObjectHideFlags: 0
@@ -106440,7 +106578,6 @@ GameObject:
   - component: {fileID: 1645959511}
   - component: {fileID: 1645959510}
   - component: {fileID: 1645959516}
-  - component: {fileID: 1645959517}
   m_Layer: 0
   m_Name: ElonMusk
   m_TagString: Untagged
@@ -106654,24 +106791,14 @@ MonoBehaviour:
   dogecoinPrefab: {fileID: 2988643783488499838, guid: 57e39fdadf3f4fd429f52c52ad52e7a2, type: 3}
   projectileSpeed: 20
   projectileCount: 16
-  delayBetweenShots: 0.4
+  delayBetweenShots: 0.15
   projectileLifetime: 1.5
+  sfxManager: {fileID: 51385421}
+  voicelineCooldown: 3
   specialAttack: 1
   dogecoinshooter: {fileID: 721277911}
   elonmovement: {fileID: 1645959510}
   circleBurstActive: 0
---- !u!114 &1645959517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1645959509}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54b8baa2932a01541be683c49458a7f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::elonStats
 --- !u!1 &1647084186
 GameObject:
   m_ObjectHideFlags: 0
@@ -106705,6 +106832,105 @@ Transform:
   - {fileID: 158228231}
   m_Father: {fileID: 395670236}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1738601196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1738601197}
+  - component: {fileID: 1738601199}
+  - component: {fileID: 1738601198}
+  m_Layer: 0
+  m_Name: bulletSoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1738601197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738601196}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 691050625}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1738601198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738601196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8224c828489b441458c81c68710089ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletSound
+  pistolShot:
+    Guid:
+      Data1: 327137373
+      Data2: 1258677034
+      Data3: -1738966347
+      Data4: -584816181
+    Path: event:/attacks/gunshot
+  energyShock:
+    Guid:
+      Data1: -1481937728
+      Data2: 1220856409
+      Data3: -249246542
+      Data4: 952636035
+    Path: event:/attacks/energyshock
+  knifeSwing:
+    Guid:
+      Data1: -823003180
+      Data2: 1173922061
+      Data3: -316401251
+      Data4: 691544027
+    Path: event:/attacks/knife
+--- !u!114 &1738601199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738601196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5847435b5c95f44938a8cc4ee5d69f15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletSound
+  pistolShot:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  energyShock:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  knifeSwing:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &1748969094
 GameObject:
   m_ObjectHideFlags: 0
@@ -122201,6 +122427,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 2024192303}
   scoreHolder: {fileID: 0}
   healthBar: {fileID: 0}
+  sfxManager: {fileID: 0}
 --- !u!70 &2024192301
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -123192,3 +123419,4 @@ SceneRoots:
   - {fileID: 2024192304}
   - {fileID: 648090017}
   - {fileID: 1645959515}
+  - {fileID: 691050625}

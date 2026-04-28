@@ -1,20 +1,27 @@
 using UnityEngine;
 using FMODUnity;
+using FMOD.Studio;
+
 public class SfxManager : MonoBehaviour
 {
     public static SfxManager Instance;
+
     [SerializeField] private EventReference playerDeath;
     [SerializeField] private EventReference enemyDeath;
     [SerializeField] private EventReference bossDeath;
     [SerializeField] private EventReference levelUp;
     [SerializeField] private EventReference hoverButton;
+    [SerializeField] private EventReference elonQuotes;
+    [SerializeField] private EventReference elonDeath;
+
+    private EventInstance elonQuotesInstance;
 
     private void Awake()
     {
         Instance = this;
+        elonQuotesInstance = RuntimeManager.CreateInstance(elonQuotes);
     }
 
-    // Update is called once per frame
     public void PlayPlayerDeath()
     {
         RuntimeManager.PlayOneShot(playerDeath);
@@ -34,11 +41,31 @@ public class SfxManager : MonoBehaviour
     {
         RuntimeManager.PlayOneShot(hoverButton);
     }
-    public void playBossDeath()
+
+    public void PlayBossDeath()
     {
         RuntimeManager.PlayOneShot(bossDeath);
     }
+
+    public void PlayElonQuotes()
+    {
+        elonQuotesInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        elonQuotesInstance.start();
+    }
+
+    public void StopElonQuotes()
+    {
+        elonQuotesInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
+
+    public void PlayElonDeath()
+    {
+        RuntimeManager.PlayOneShot(elonDeath);
+    }
+
+    private void OnDestroy()
+    {
+        elonQuotesInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        elonQuotesInstance.release();
+    }
 }
-
-
-

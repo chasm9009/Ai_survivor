@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{51497115-c184-4e6d-8f7b-74a1c51343dd}">
+		<property name="assetPath">
+			<value>[Elon Musk]What.......game_.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>6.8702040816326528</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e5fcb822-dd00-483a-839e-815293d0faef}</destination>
+		</relationship>
+	</object>
+</objects>
