@@ -14,6 +14,12 @@ public class elonattacks : MonoBehaviour
     [SerializeField] private int projectileCount = 20;
     [SerializeField] private float delayBetweenShots = 0.1f;
     [SerializeField] private float projectileLifetime = 1.5f;
+    [SerializeField] SfxManager sfxManager;
+
+    [Header("Voiceline Settings")]
+    [SerializeField] private float voicelineCooldown = 3f; // adjust to match clip length
+    private float lastVoicelineTime = -4f;
+
 
     public bool specialAttack = true;
 
@@ -39,20 +45,31 @@ public class elonattacks : MonoBehaviour
 
     void Update()
     {
-        if (Random.Range(0f, 1f) > 0.995f && !circleBurstActive) // Random chance to trigger special attack, only if not already active
-        {
-            circleBurstActive = true;
-            Debug.Log("🚀 SPECIAL ATTACK: CIRCLE BURST");
-            CircleBurstAttack();
-        }
-
-        if (Random.Range(0f, 1f) > 0.995f && !circleBurstActive) // Random chance to trigger special attack, only if not already active)
-        {
-            circleBurstActive = true;
-            Debug.Log("🚀 SPECIAL ATTACK: FULL ELECTRIC BOOST");
-            SpeedBoost();
-        }
+        if (Random.Range(0f, 1f) > 0.995f && !circleBurstActive)
+    {
+        circleBurstActive = true;
+        TryPlayVoiceline();
+        Debug.Log("🚀 SPECIAL ATTACK: CIRCLE BURST");
+        CircleBurstAttack();
     }
+
+    if (Random.Range(0f, 1f) > 0.995f && !circleBurstActive)
+    {
+        circleBurstActive = true;
+        TryPlayVoiceline();
+        Debug.Log("🚀 SPECIAL ATTACK: FULL ELECTRIC BOOST");
+        SpeedBoost();
+    }
+    }
+    
+    void TryPlayVoiceline()
+{
+    if (Time.time - lastVoicelineTime >= voicelineCooldown)
+    {
+        sfxManager.PlayElonQuotes();
+        lastVoicelineTime = Time.time;
+    }
+}
 
     // ================================
     // ATTACK
