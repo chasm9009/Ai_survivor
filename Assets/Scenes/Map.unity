@@ -14104,7 +14104,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreHolder
   currentLevelText: {fileID: 1193482330}
-  xpText: {fileID: 0}
   xpImage: {fileID: 1969020030}
   xp0: {fileID: -2944243802849166431, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
   xp25: {fileID: -3196215182155280146, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
@@ -106606,9 +106605,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1704133915}
   - component: {fileID: 1704133916}
+  - component: {fileID: 1704133917}
   m_Layer: 0
   m_Name: HItbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106665,6 +106665,19 @@ CapsuleCollider2D:
   m_Offset: {x: -0.2791468, y: 0.2340321}
   m_Size: {x: 0.78760505, y: 1.9493073}
   m_Direction: 0
+--- !u!114 &1704133917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704133914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b27a08c44665b644b3373995148f30c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  playerMovement: {fileID: 1811915777}
 --- !u!1 &1748969094
 GameObject:
   m_ObjectHideFlags: 0
@@ -107774,7 +107787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d32196e91aa7fd4cadb5dbdfed2f894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::playercollision
-  sr: {fileID: 0}
+  sr: {fileID: 1811915780}
 --- !u!114 &1811915773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107870,6 +107883,8 @@ MonoBehaviour:
   speed: 5
   moveInput: {fileID: 7059520710146851063, guid: 61ea1d8b20bb9aa48b5e66a59017c1f8, type: 3}
   spriteRenderer: {fileID: 1811915780}
+  scoreHolder: {fileID: 470145693}
+  healthBar: {fileID: 1648934771}
 --- !u!70 &1811915778
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
