@@ -4,7 +4,7 @@ public struct Stats
     public int CurrentHealth;
     public int MaxPower;
     public int CurrentPower;
-    public int speed;
+    public float speed;
     public int BaseDamage;
     public int Range;
     public int BulletSpeed;

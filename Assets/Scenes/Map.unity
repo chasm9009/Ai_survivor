@@ -83388,7 +83388,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 6139743783402414375, guid: 2844ccb28c4b11546ad9afae3985de8a, type: 3}
+  m_Sprite: {fileID: 766755766573115832, guid: 23d216017cbac204c95ac9b1ea3f7a80, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -127374,6 +127374,13 @@ MonoBehaviour:
       Data3: -1273822786
       Data4: 1561402046
     Path: event:/Mark/markdeath
+  elonIntro:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &2046103787
 GameObject:
   m_ObjectHideFlags: 0
