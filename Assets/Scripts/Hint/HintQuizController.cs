@@ -39,6 +39,7 @@ public class HintQuizController : MonoBehaviour
 
     public void OnLevelUp()
     {
+        Debug.Log("On level up");
         if (unansweredQuestions.Count == 0)
         {
             Debug.Log("All questions answered!");
@@ -134,7 +135,7 @@ public class HintQuizController : MonoBehaviour
             AnswerButton_B.gameObject.SetActive(false);
             AnswerButton_C.gameObject.SetActive(false);
             AnswerButton_D.gameObject.SetActive(false);
-
+            QuizScreen.gameObject.SetActive(false);
             UpgradeScreen.SetActive(true);
         }
         else

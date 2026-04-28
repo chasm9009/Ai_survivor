@@ -1,15 +1,15 @@
 {
     "version": 1,
-    "name": "playermov",
+    "name": "PlayerControlelr",
     "maps": [
         {
-            "name": "playermov",
-            "id": "ca1878c1-d016-4c5d-8cd5-f0facf370a0e",
+            "name": "Controls",
+            "id": "17096266-ce4e-4dd2-b27f-2b3d050db838",
             "actions": [
                 {
                     "name": "move",
                     "type": "Value",
-                    "id": "b798ce47-f8b7-459e-b496-debcb1a8e469",
+                    "id": "82111fec-1d5d-4376-9e0e-58a434a8d4e3",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -18,7 +18,7 @@
                 {
                     "name": "DebugLevelUp",
                     "type": "Button",
-                    "id": "9b3eae5e-f64e-4615-9157-7161013145cb",
+                    "id": "ec3d423c-7b45-496a-938b-ab83f8246285",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -28,7 +28,7 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "af306efd-ef41-4b0c-b803-1d06df704cbe",
+                    "id": "4ac8d4d3-953c-4c35-aedb-a382b09ae996",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
@@ -39,31 +39,12 @@
                 },
                 {
                     "name": "",
-<<<<<<< HEAD
-                    "id": "71772d7e-5fd1-4d9a-9427-7d4e44c416a6",
-=======
-                    "id": "4f5f7cad-4302-448a-b983-7b6e9ec51ef5",
->>>>>>> b920118505cb91803b5b059a362a9e84b4191f6a
+                    "id": "541cd640-840e-4010-8479-cc4b8fd21db8",
                     "path": "<Keyboard>/l",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-<<<<<<< HEAD
                     "action": "DebugLevelUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c33747cb-9b30-41b3-a590-e67d6ea2e663",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "DebugLevelUp",
-=======
-                    "action": "LevelUpDebug",
->>>>>>> b920118505cb91803b5b059a362a9e84b4191f6a
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

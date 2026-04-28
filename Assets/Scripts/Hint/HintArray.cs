@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HintArray : MonoBehaviour
+public static class HintArray
 {
     static public Dictionary<string, string[]> hintDictionary = new Dictionary<string, string[]>()
     {
