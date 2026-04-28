@@ -73,7 +73,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{4fd537be-d059-43e1-9917-134a0e67b102}">
 		<property name="volume">
-			<value>-2.5</value>
+			<value>-1</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{96c3bc48-dd56-450f-b48c-621ca54e837c}</destination>
@@ -119,7 +119,7 @@
 	<object class="MixerBusFader" id="{4dd54091-690b-48c5-95b3-9d50f80eec53}" />
 	<object class="ThreeEQEffect" id="{dce8daa5-b5e2-4061-baeb-dbdb6b18c12b}">
 		<property name="lowGain">
-			<value>-4.5</value>
+			<value>-11.5</value>
 		</property>
 	</object>
 	<object class="SingleSound" id="{73c62a74-b684-404b-be32-2858db58e957}">

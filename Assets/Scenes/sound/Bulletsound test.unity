@@ -161,6 +161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 176132742}
   - component: {fileID: 176132743}
+  - component: {fileID: 176132744}
   m_Layer: 0
   m_Name: bulletSoundManager
   m_TagString: Untagged
@@ -195,7 +196,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5847435b5c95f44938a8cc4ee5d69f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletSound
-  Instance: {fileID: 0}
+--- !u!114 &176132744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176132741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8224c828489b441458c81c68710089ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletSound
   pistolShot:
     Guid:
       Data1: 327137373
@@ -370,7 +382,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 297488605}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a81dc0731a3a14ee1a2134d3f523baf5, type: 3}
+  m_Script: {fileID: 11500000, guid: 7cd88c37a2071e94488de407c5d22bf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ThemeMusic
   themeEvent:
@@ -807,7 +819,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletHandler
   currentBullets: []
-  bulletSound: {fileID: 176132743}
   pistolBulletPrefab: {fileID: 7747355875022275002, guid: 7ebe8d5f5c1cf6542a1519a36c0e582a, type: 3}
 --- !u!114 &1420018087
 MonoBehaviour:

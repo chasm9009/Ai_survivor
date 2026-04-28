@@ -126,13 +126,13 @@
 	</object>
 	<object class="ThreeEQEffect" id="{d4c80bc0-120b-4e47-bf4b-0ae76f2aa779}">
 		<property name="lowGain">
-			<value>-11.5</value>
+			<value>-4</value>
 		</property>
 		<property name="midGain">
-			<value>-5</value>
+			<value>-2.5</value>
 		</property>
 		<property name="highGain">
-			<value>0.5</value>
+			<value>1.5</value>
 		</property>
 		<property name="lowCrossover">
 			<value>520</value>
