@@ -17,6 +17,7 @@ public class playerMovement : MonoBehaviour
 
     [SerializeField] private ScoreHolder scoreHolder;
     [SerializeField] private HealthBar healthBar;
+    [SerializeField] private SfxManager sfxManager;
 
     // Update is called once per frame
     private void Update()
@@ -38,6 +39,7 @@ public class playerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerStats = InitPlayerStats.InitializePlayerStats();
         weaponHandler = GetComponent<WeaponHandler>();
+        sfxManager = GetComponent<SfxManager>();
         weaponHandler.AddWeapon(WeaponTypes.Pistol);
 
     }
@@ -88,6 +90,7 @@ public class playerMovement : MonoBehaviour
             LevelUp();
         }
         scoreHolder.UpdateXPBar(playerStats.Level, playerStats.XP, playerStats.XPToNextLevel);
+        
     }
     public void LevelUp()
     {
@@ -96,6 +99,7 @@ public class playerMovement : MonoBehaviour
         playerStats.XPToNextLevel = playerStats.XPToNextLevel * 1.2f; // Increase target XP for next level
         // Here you can also increase player stats or unlock new abilities based on the new level
         Debug.Log("Leveled Up! Current Level: " + playerStats.Level);
+        sfxManager.PlayLevelUp();
     }
 
 }
