@@ -12,7 +12,7 @@ public class BulletHandler : MonoBehaviour
     public List<GameObject> currentBullets;
 
     [SerializeField] private Stats playerStats;
-
+    [SerializeField] private GameObject pistolBulletPrefab;
 
     public void Start()
     {
@@ -26,7 +26,7 @@ public class BulletHandler : MonoBehaviour
             maxSize: 1000
         );
     }
-    [SerializeField] private GameObject pistolBulletPrefab;
+
     public void SpawnBullet(BulletTypes type, Vector3 position, Stats playerStats, Vector2 direction)
     {
         GameObject bullet = bulletPool.Get();
@@ -36,21 +36,28 @@ public class BulletHandler : MonoBehaviour
         bulletComponent.bulletType = type;
         bulletComponent.direction = direction;
         currentBullets.Add(bullet);
+
         switch (type)
         {
             case BulletTypes.Pistol:
                 PistolBullet.UpdatePistolBulletStats(bulletComponent, playerStats);
                 break;
+            case BulletTypes.Rifle:
+                RifleBullet.UpdateRifleBulletStats(bulletComponent, playerStats);
+                break;
+            case BulletTypes.Shotgun:
+                ShotgunBullet.UpdateShotgunBulletStats(bulletComponent, playerStats);
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
     }
+
     public void DespawnBullet(GameObject bullet)
     {
-        bulletPool.Release(bullet);
-        currentBullets.Remove(bullet);
         var bulletComponent = bullet.GetComponent<Bullet>();
         bulletComponent.distanceTraveled = 0f;
+        bulletPool.Release(bullet);
         currentBullets.Remove(bullet);
     }
 
@@ -69,6 +76,14 @@ public class BulletHandler : MonoBehaviour
                 case BulletTypes.Pistol:
                     bool shouldDespawn = PistolBullet.PistolBehavior(bullet, bullet.GetComponent<Bullet>(), Time.deltaTime);
                     if (shouldDespawn) bulletsToRemove.Add(bullet);
+                    break;
+                case BulletTypes.Rifle:
+                    bool shouldDespawnRifle = RifleBullet.RifleBehavior(bullet, bullet.GetComponent<Bullet>(), Time.deltaTime);
+                    if (shouldDespawnRifle) bulletsToRemove.Add(bullet);
+                    break;
+                case BulletTypes.Shotgun:
+                    bool shouldDespawnShotgun = ShotgunBullet.ShotgunBehavior(bullet, bullet.GetComponent<Bullet>(), Time.deltaTime);
+                    if (shouldDespawnShotgun) bulletsToRemove.Add(bullet);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
