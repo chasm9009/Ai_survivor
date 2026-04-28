@@ -10,7 +10,7 @@ public class BulletSound : MonoBehaviour
     [SerializeField] private EventReference knifeSwing;
     private void Awake()
     {
-        Instance = this;
+        Instance = new BulletSound();
     }
 
     // Update is called once per frame

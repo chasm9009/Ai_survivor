@@ -8,7 +8,7 @@ public class SfxManager : MonoBehaviour
     [SerializeField] private EventReference bossDeath;
     [SerializeField] private EventReference levelUp;
     [SerializeField] private EventReference hoverButton;
-   
+
     private void Awake()
     {
         Instance = this;
@@ -40,5 +40,5 @@ public class SfxManager : MonoBehaviour
     }
 }
 
-    
+
 

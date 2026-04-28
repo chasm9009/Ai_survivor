@@ -15,7 +15,7 @@ public class EnemyHandler : MonoBehaviour
 
     public GameObject player;
     [SerializeField] private ThemeMusic themeMusic;
-    public void Start()
+    public void Awake()
     {
         enemyPool = new ObjectPool<GameObject>(
             createFunc: () => Instantiate(EnemyPrefab),

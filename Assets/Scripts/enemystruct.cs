@@ -11,9 +11,12 @@ public class enemystruct : MonoBehaviour
     [SerializeField] private float speed = 0.003f;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
+    private SfxManager sfxManager;
+
     public EnemyHandler enemyHandler;
     private void Start()
     {
+        sfxManager = FindAnyObjectByType<SfxManager>();
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         playerMovement = playerObject.GetComponent<Hitbox>().playerMovement;
         if (playerObject != null)
@@ -68,6 +71,7 @@ public class enemystruct : MonoBehaviour
         //give player xp and despawn
         playerMovement.GainXP(enemyStats.xpamount);
         enemyHandler.DespawnEnemy(gameObject);
+        sfxManager.PlayEnemyDeath();
     }
     private void damagePlayer(int damage)
     {

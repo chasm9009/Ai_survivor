@@ -39,9 +39,7 @@ public class playerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerStats = InitPlayerStats.InitializePlayerStats();
         weaponHandler = GetComponent<WeaponHandler>();
-        sfxManager = GetComponent<SfxManager>();
         weaponHandler.AddWeapon(WeaponTypes.Pistol);
-
     }
     Vector2 lastDirection;
     private void FixedUpdate()
@@ -91,7 +89,7 @@ public class playerMovement : MonoBehaviour
             LevelUp();
         }
         scoreHolder.UpdateXPBar(playerStats.Level, playerStats.XP, playerStats.XPToNextLevel);
-        
+
     }
     public void LevelUp()
     {

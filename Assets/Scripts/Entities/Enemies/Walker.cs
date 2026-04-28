@@ -17,8 +17,8 @@ public static class Walker
     {
         EnemyStats stats = new EnemyStats();
         stats.enemyType = EnemyTypes.Walker;
-        stats.maxHealth = 100;
-        stats.currentHealth = 100;
+        stats.maxHealth = 20;
+        stats.currentHealth = 20;
         stats.speed = 1f;
         stats.xpamount = 10f;
         stats.damage = 10;

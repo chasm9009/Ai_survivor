@@ -9770,6 +9770,7 @@ GameObject:
   - component: {fileID: 292775802}
   - component: {fileID: 292775801}
   - component: {fileID: 292775800}
+  - component: {fileID: 292775803}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -9895,6 +9896,29 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &292775803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292775798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd88c37a2071e94488de407c5d22bf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ThemeMusic
+  themeEvent:
+    Guid:
+      Data1: -757784157
+      Data2: 1227817651
+      Data3: -806034765
+      Data4: 738027598
+    Path: event:/theme
+  parameterName: energy
+  currentEnergy: 0
+  volume: 1
+  lowHealth: 0
 --- !u!1 &300909275
 GameObject:
   m_ObjectHideFlags: 0
@@ -24345,6 +24369,7 @@ MonoBehaviour:
   currentEnemies: []
   EnemyPrefab: {fileID: 3387655510441309072, guid: 8991e413ee1abe447a77e861abeb797b, type: 3}
   player: {fileID: 1811915771}
+  themeMusic: {fileID: 0}
 --- !u!4 &749828386
 Transform:
   m_ObjectHideFlags: 0
@@ -83620,6 +83645,39 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1289268183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1289268184}
+  m_Layer: 0
+  m_Name: Sounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1289268184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289268183}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.10618, y: 0.09912, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1630291441}
+  - {fileID: 1994004233}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1341384532
 GameObject:
   m_ObjectHideFlags: 0
@@ -106435,6 +106493,71 @@ Transform:
   - {fileID: 643880297}
   m_Father: {fileID: 1341384533}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1630291440
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1630291441}
+  - component: {fileID: 1630291442}
+  m_Layer: 0
+  m_Name: bulletSoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1630291441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630291440}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1289268184}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1630291442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630291440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8224c828489b441458c81c68710089ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletSound
+  pistolShot:
+    Guid:
+      Data1: 327137373
+      Data2: 1258677034
+      Data3: -1738966347
+      Data4: -584816181
+    Path: event:/attacks/gunshot
+  energyShock:
+    Guid:
+      Data1: -1481937728
+      Data2: 1220856409
+      Data3: -249246542
+      Data4: 952636035
+    Path: event:/attacks/energyshock
+  knifeSwing:
+    Guid:
+      Data1: -823003180
+      Data2: 1173922061
+      Data3: -316401251
+      Data4: 691544027
+    Path: event:/attacks/knife
 --- !u!1 &1643235035
 GameObject:
   m_ObjectHideFlags: 0
@@ -106557,6 +106680,7 @@ MonoBehaviour:
   health50: {fileID: 5321405506712674580, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
   health75: {fileID: -3460609258686177541, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
   health100: {fileID: -7310718435115833628, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
+  themeMusic: {fileID: 0}
 --- !u!114 &1648934772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107885,6 +108009,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1811915780}
   scoreHolder: {fileID: 470145693}
   healthBar: {fileID: 1648934771}
+  sfxManager: {fileID: 0}
 --- !u!70 &1811915778
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -122343,6 +122468,85 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1994004232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1994004233}
+  - component: {fileID: 1994004234}
+  m_Layer: 0
+  m_Name: sfxManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1994004233
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994004232}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1289268184}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1994004234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994004232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62279abe4389b44b5b1d3618590199f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SfxManager
+  playerDeath:
+    Guid:
+      Data1: 1163140621
+      Data2: 1089497916
+      Data3: -1776716105
+      Data4: -1700907727
+    Path: event:/player death
+  enemyDeath:
+    Guid:
+      Data1: -402812412
+      Data2: 1084204555
+      Data3: 1843848848
+      Data4: 1436017893
+    Path: event:/enemy death
+  bossDeath:
+    Guid:
+      Data1: -1690142900
+      Data2: 1099482587
+      Data3: 621317525
+      Data4: -1553878731
+    Path: event:/boss clear
+  levelUp:
+    Guid:
+      Data1: 2044250258
+      Data2: 1264206970
+      Data3: 392124545
+      Data4: -1560793025
+    Path: event:/levelup
+  hoverButton:
+    Guid:
+      Data1: 207072583
+      Data2: 1273276782
+      Data3: 1763585179
+      Data4: -53326502
+    Path: event:/UI hover
 --- !u!1 &2046103787
 GameObject:
   m_ObjectHideFlags: 0
@@ -123195,3 +123399,4 @@ SceneRoots:
   - {fileID: 749828386}
   - {fileID: 446141106}
   - {fileID: 796724895}
+  - {fileID: 1289268184}

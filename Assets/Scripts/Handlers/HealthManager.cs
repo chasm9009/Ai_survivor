@@ -36,11 +36,12 @@ public class HealthBar : MonoBehaviour
             healthImage.sprite = health25;
         else
             healthImage.sprite = health0;
-            
-            float healthprog = (float)currentHealth / maxHealth;
-        themeMusic.StartRinging(healthprog);
+
+        float healthprog = (float)currentHealth / (float)maxHealth;
+        var reverse = 1 - healthprog;
+        themeMusic.StartRinging(reverse);
     }
 
-   
+
 }
 
