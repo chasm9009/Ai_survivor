@@ -13,25 +13,24 @@ namespace DialougeSystem
         [SerializeField] private string input;
         [SerializeField] private TMP_FontAsset tmp_Font;
 
-        [SerializeField] private SfxManager sfxManager;
-
-        private void Awake()
+        private void Start()
         {
             textHolder = GetComponent<TMP_Text>(); // Get the TMP_Text component
 
             StartCoroutine(eightBitBaseClass.WriteText(input, textHolder, tmp_Font)); // Start the coroutine to write text
-                PlayIntro();
+               
+            PlayIntro();
         }
 
         void PlayIntro()
         {
-            StartCoroutine(ElonIntoiing());
+            StartCoroutine(ElonIntroCoroutine());
         }
 
-        IEnumerator ElonIntoiing()
+        IEnumerator ElonIntroCoroutine()
         {
             yield return new WaitForSeconds(0.5f);
-            sfxManager.ElonIntro();
+            SfxManager.Instance.PlayElonIntro();
     }
     }
 }

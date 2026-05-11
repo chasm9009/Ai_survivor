@@ -127360,6 +127360,13 @@ MonoBehaviour:
       Data3: 607822263
       Data4: 694906814
     Path: event:/elon/elon death
+  elonIntro:
+    Guid:
+      Data1: -656788040
+      Data2: 1199468777
+      Data3: -446377056
+      Data4: -879634352
+    Path: event:/intro speak
   markQuotes:
     Guid:
       Data1: 49974546
@@ -127374,13 +127381,6 @@ MonoBehaviour:
       Data3: -1273822786
       Data4: 1561402046
     Path: event:/Mark/markdeath
-  elonIntro:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
 --- !u!1 &2046103787
 GameObject:
   m_ObjectHideFlags: 0

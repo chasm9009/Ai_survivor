@@ -16,31 +16,28 @@ public class SfxManager : MonoBehaviour
     [SerializeField] private EventReference elonQuotes;
     [SerializeField] private EventReference elonDeath;
 
+    [SerializeField] private EventReference elonIntro;
     [Header("Mark")]
     [SerializeField] private EventReference markQuotes;
     [SerializeField] private EventReference markDeath;
 
-    [SerializeField] private EventReference elonIntro;
-
     private EventInstance elonQuotesInstance;
     private EventInstance markQuotesInstance;
+    private EventInstance elonIntroInstance;
 
     private void Awake()
     {
         Instance = this;
         elonQuotesInstance = RuntimeManager.CreateInstance(elonQuotes);
         markQuotesInstance = RuntimeManager.CreateInstance(markQuotes);
+        elonIntroInstance = RuntimeManager.CreateInstance(elonIntro);
+        
     }
 
     public void PlayPlayerDeath()
     {
         RuntimeManager.PlayOneShot(playerDeath);
     }
-        public void ElonIntro()
-    {
-        RuntimeManager.PlayOneShot(elonIntro);
-    }
-
 
     public void PlayEnemyDeath()
     {
@@ -102,6 +99,18 @@ public class SfxManager : MonoBehaviour
         RuntimeManager.PlayOneShot(markDeath);
     }
 
+
+       public void PlayElonIntro()
+    {
+        elonIntroInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        elonIntroInstance.start();
+    }
+
+        public void StopElonIntro()
+    {
+        elonIntroInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
+
     // ================================
     // CLEANUP
     // ================================
@@ -113,5 +122,8 @@ public class SfxManager : MonoBehaviour
 
         markQuotesInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         markQuotesInstance.release();
+
+        elonIntroInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        elonIntroInstance.release();
     }
 }

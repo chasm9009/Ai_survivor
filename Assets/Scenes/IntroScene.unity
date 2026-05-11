@@ -449,7 +449,6 @@ MonoBehaviour:
     to take over the world. So time to lock in, no more jeestermaxing, you are humanities
     last hope. So defeat the brainrot underlings survive the waves of AI overlords
   tmp_Font: {fileID: 11400000, guid: fa38137b5b55c684d899e34d16b89059, type: 2}
-  sfxManager: {fileID: 446240990}
 --- !u!1 &446240988
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,6 +542,13 @@ MonoBehaviour:
       Data3: 607822263
       Data4: 694906814
     Path: event:/elon/elon death
+  elonIntro:
+    Guid:
+      Data1: -656788040
+      Data2: 1199468777
+      Data3: -446377056
+      Data4: -879634352
+    Path: event:/intro speak
   markQuotes:
     Guid:
       Data1: 49974546
@@ -557,13 +563,6 @@ MonoBehaviour:
       Data3: -1273822786
       Data4: 1561402046
     Path: event:/Mark/markdeath
-  elonIntro:
-    Guid:
-      Data1: -656788040
-      Data2: 1199468777
-      Data3: -446377056
-      Data4: -879634352
-    Path: event:/intro speak
 --- !u!1 &644082388
 GameObject:
   m_ObjectHideFlags: 0
@@ -1211,27 +1210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5847435b5c95f44938a8cc4ee5d69f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletSound
-  pistolShot:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  energyShock:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  knifeSwing:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
 --- !u!1 &1795562845
 GameObject:
   m_ObjectHideFlags: 0
