@@ -191,11 +191,6 @@ public class HintQuizController : MonoBehaviour
 
     private string GetCorrectAnswer(string spørgsmål)
     {
-        foreach (var kvp in HintArray.quizDictionary)
-        {
-            if (kvp.Value == spørgsmål)
-                return kvp.Key;
-        }
-        return "";
+        return HintArray.quizDictionary[spørgsmål];
     }
 }

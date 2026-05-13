@@ -14,7 +14,7 @@ public class elonmovement : MonoBehaviour
     public elonattacks elonattacks;
 
     [SerializeField] private elonHealth elonHealth;
-    [SerializeField] private playerMovement playerMovement;
+    [SerializeField] private PlayerMovement playerMovement;
 
     private bool isDashing = false;
 

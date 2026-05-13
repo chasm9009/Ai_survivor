@@ -1,24 +1,21 @@
 using System.Runtime.Serialization;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class playerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
 
     public Stats playerStats;
     //insert Upgrades
     [SerializeField]
     private WeaponHandler weaponHandler;
-
     private Rigidbody rb;
     [SerializeField] private float speed = 5f;
     [SerializeField] public InputActionReference moveInput;
     [SerializeField] private SpriteRenderer spriteRenderer;
-
-    [SerializeField] private ScoreHolder scoreHolder;
-    [SerializeField] private HealthBar healthBar;
     [SerializeField] private HintQuizController hintQuizController;
     [SerializeField] private SfxManager sfxManager;
 
@@ -37,7 +34,7 @@ public class playerMovement : MonoBehaviour
             spriteRenderer.flipX = false;
         }
     }
-    public void Start()
+    public void Awake()
     {
         rb = GetComponent<Rigidbody>();
         playerStats = InitPlayerStats.InitializePlayerStats();
@@ -73,7 +70,7 @@ public class playerMovement : MonoBehaviour
         Debug.Log("Damage " + damage);
         Debug.Log("CurrentHealth " + playerStats.CurrentHealth);
         Debug.Log("CurrentHealth " + playerStats.MaxHealth);
-        healthBar.UpdateHealthBar(playerStats.CurrentHealth, playerStats.MaxHealth);
+        HealthChanged.Invoke(playerStats.CurrentHealth, playerStats.MaxHealth);
         if (playerStats.CurrentHealth <= 0)
         {
             // Handle player death (e.g., disable movement, play animation, etc.)
@@ -92,8 +89,7 @@ public class playerMovement : MonoBehaviour
         {
             LevelUp();
         }
-        scoreHolder.UpdateXPBar(playerStats.Level, playerStats.XP, playerStats.XPToNextLevel);
-
+        XPChanged.Invoke(playerStats.Level, playerStats.XP, playerStats.XPToNextLevel);
     }
     public void LevelUp()
     {
@@ -110,5 +106,27 @@ public class playerMovement : MonoBehaviour
     public void OnDebugLevelUp()
     {
         LevelUp();
+    }
+
+    public UnityEvent<int, int> HealthChanged = new UnityEvent<int, int>();
+    public UnityEvent<int, float, float> XPChanged = new UnityEvent<int, float, float>();
+    private void Start()
+    {
+        BindAllHealthChanged();
+        HealthChanged?.Invoke(playerStats.CurrentHealth, playerStats.MaxHealth);
+        BindAllXPChanged();
+        XPChanged?.Invoke(playerStats.Level, playerStats.XP, playerStats.XPToNextLevel);
+    }
+    private void BindAllHealthChanged()
+    {
+        Debug.Log("Binding HealthChanged event to HealthBar");
+        var healthBar = FindAnyObjectByType<HealthBar>();
+        HealthChanged.AddListener(healthBar.UpdateHealthBar);
+    }
+    private void BindAllXPChanged()
+    {
+        Debug.Log("Binding XPChanged event to ScoreHolder");
+        var scoreHolder = FindAnyObjectByType<ScoreHolder>();
+        XPChanged.AddListener(scoreHolder.UpdateXPBar);
     }
 }

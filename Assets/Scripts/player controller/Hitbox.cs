@@ -2,5 +2,5 @@ using UnityEngine;
 
 public class Hitbox : MonoBehaviour
 {
-    public playerMovement playerMovement;
+    public PlayerMovement playerMovement;
 }

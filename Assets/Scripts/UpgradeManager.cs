@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class UpgradeManager : MonoBehaviour
 {
-    [SerializeField] private playerMovement player;
+    [SerializeField] private PlayerMovement player;
 
     [Header("Upgrade Buttons")]
     [SerializeField] private Button FireRateButton;

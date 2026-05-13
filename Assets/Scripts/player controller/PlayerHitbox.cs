@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class PlayerHitbox : MonoBehaviour
 {
     [SerializeField]
-    private playerMovement playerMovement;
+    private PlayerMovement playerMovement;
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))

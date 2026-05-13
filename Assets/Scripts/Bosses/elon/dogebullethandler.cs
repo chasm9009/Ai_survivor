@@ -6,10 +6,10 @@ public class dogebullethandler : MonoBehaviour
 {
     private ObjectPool<GameObject> pool;
 
-    private playerMovement playerMovement;
+    private PlayerMovement playerMovement;
     public void Start()
     {
-        playerMovement = FindAnyObjectByType<playerMovement>();
+        playerMovement = FindAnyObjectByType<PlayerMovement>();
     }
     public void Init(ObjectPool<GameObject> poolRef, Vector2 velocity, float lifetime)
     {

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class HintArray
 {
-    static public Dictionary<string, string[]> hintDictionary = new Dictionary<string, string[]>()
+    public static readonly Dictionary<string, string[]> hintDictionary = new()
     {
         // Duty to inform
         {"What does duty to inform require?", new string[] {
@@ -81,26 +81,26 @@ public static class HintArray
             "You can only keep someones consent for as long as you need it for its purpose, then it must be deleted"}},
     };
 
-    static public Dictionary<string, string> quizDictionary = new Dictionary<string, string>()
+    public static readonly Dictionary<string, string> quizDictionary = new()
     {
         // Duty to inform
-        {"That individuals are informed about how their data is used", "What does duty to inform require?"},
-        {"The company responsible for processing the data", "Who is the data controller?"},
+        {"What does duty to inform require?", "That individuals are informed about how their data is used"},
+        {"Who is the data controller?", "The company responsible for processing the data"},
 
         // Data Documentation
-        {"The prompt, answer, platform, version, history and date of training data", "What must be included when documenting AI use in an assignment?"},
-        {"Because different versions can give different answers to the same prompt", "Why is it important to document which version of an AI model you used?"},
+        {"What must be included when documenting AI use in an assignment?", "The prompt, answer, platform, version, history and date of training data"},
+        {"Why is it important to document which version of an AI model you used?", "Because different versions can give different answers to the same prompt"},
 
         // Data shared with AI
-        {"Ask the person for permission first", "What must you do before sharing someones personal data with an AI platform?"},
-        {"Information that is already publicly available", "What type of data are you allowed to share with an AI platform without special permission?"},
+        {"What must you do before sharing someones personal data with an AI platform?", "Ask the person for permission first"},
+        {"What type of data are you allowed to share with an AI platform without special permission?", "Information that is already publicly available"},
 
         // AI Platform Evaluation
-        {"It shows you how up-to-date the platforms knowledge is", "Why is a content cut-off date important when using an AI platform?"},
-        {"Because the output may be biased or incorrect due to its training data", "Why should you always verify the output from a generative AI platform?"},
+        {"Why is a content cut-off date important when using an AI platform?", "It shows you how up-to-date the platforms knowledge is"},
+        {"Why should you always verify the output from a generative AI platform?", "Because the output may be biased or incorrect due to its training data"},
 
         // Consent
-        {"Consent must be clearly and actively given, not just implied", "What does it mean that consent must be unequivocal?"},
-        {"Only for as long as you actually need it, then delete it", "How long are you allowed to keep someones consent?"},
+        {"What does it mean that consent must be unequivocal?", "Consent must be clearly and actively given, not just implied"},
+        {"How long are you allowed to keep someones consent?", "Only for as long as you actually need it, then delete it"},
     };
 }

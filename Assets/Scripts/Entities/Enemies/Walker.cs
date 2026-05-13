@@ -15,13 +15,15 @@ public static class Walker
     }
     public static EnemyStats InitializeStats(float timePassed)
     {
-        EnemyStats stats = new EnemyStats();
-        stats.enemyType = EnemyTypes.Walker;
-        stats.maxHealth = 30;
-        stats.currentHealth = 30;
-        stats.speed = 1.7f;
-        stats.xpamount = 50f;
-        stats.damage = 10;
+        EnemyStats stats = new EnemyStats
+        {
+            enemyType = EnemyTypes.Walker,
+            maxHealth = 30,
+            currentHealth = 30,
+            speed = 1.7f,
+            xpamount = 50f,
+            damage = 10
+        };
         Debug.Log($"Initialized Walker stats: Health={stats.currentHealth}, Speed={stats.speed}");
         return stats;
     }

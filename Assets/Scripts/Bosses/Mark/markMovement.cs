@@ -14,7 +14,7 @@ public class markMovement : MonoBehaviour
     public markAttacks markAttacks;
 
     [SerializeField] private markHealth markHealth;
-    [SerializeField] private playerMovement playerMovement;
+    [SerializeField] private PlayerMovement playerMovement;
     private bool isDashing = false;
 
     void Update()

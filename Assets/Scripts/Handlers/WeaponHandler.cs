@@ -13,38 +13,17 @@ public class WeaponHandler : MonoBehaviour
         {
             switch (weapon.weaponType)
             {
+                case WeaponTypes.Knife:
+                    Knife.KnifeBehavior(playerStats, bulletHandler, deltaTime, PlayerDirection, transform.position);
+                    break;
                 case WeaponTypes.Pistol:
-                    //add a small cone of inaccuracy to the player's direction for the pistol
-                    Vector2 pistolInaccuracy = UnityEngine.Random.insideUnitCircle * 0.1f;
-                    Vector2 pistolDirection = (PlayerDirection + pistolInaccuracy).normalized;
-                    // Execute pistol behavior
-
-                    if (Pistol.Fire(playerStats, deltaTime))
-                    {
-                        bulletHandler.SpawnBullet(BulletTypes.Pistol, transform.position, playerStats, pistolDirection);
-                    }
+                    Pistol.PistolBehavior(playerStats, bulletHandler, deltaTime, PlayerDirection, transform.position);
                     break;
                 case WeaponTypes.Rifle:
-                    // smaller spread for a faster, more accurate rifle
-                    Vector2 rifleInaccuracy = UnityEngine.Random.insideUnitCircle * 0.05f;
-                    Vector2 rifleDirection = (PlayerDirection + rifleInaccuracy).normalized;
-                    if (Rifle.Fire(playerStats, deltaTime))
-                    {
-                        bulletHandler.SpawnBullet(BulletTypes.Rifle, transform.position, playerStats, rifleDirection);
-                    }
+                    Rifle.RifleBehavior(playerStats, bulletHandler, deltaTime, PlayerDirection, transform.position);
                     break;
                 case WeaponTypes.Shotgun:
-                    if (Shotgun.Fire(playerStats, deltaTime))
-                    {
-                        int pelletCount = 5;
-                        float spreadAngle = 20f;
-                        for (int i = 0; i < pelletCount; i++)
-                        {
-                            float angle = Mathf.Lerp(-spreadAngle, spreadAngle, i / (float)(pelletCount - 1));
-                            Vector2 spreadDirection = Quaternion.Euler(0, 0, angle) * PlayerDirection;
-                            bulletHandler.SpawnBullet(BulletTypes.Shotgun, transform.position, playerStats, spreadDirection.normalized);
-                        }
-                    }
+                    Shotgun.ShotgunBehavior(playerStats, bulletHandler, deltaTime, PlayerDirection, transform.position);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -56,6 +35,9 @@ public class WeaponHandler : MonoBehaviour
     {
         switch (type)
         {
+            case WeaponTypes.Knife:
+                currentWeapons.Add(new Weapon { weaponType = WeaponTypes.Knife, damage = 20 });
+                break;
             case WeaponTypes.Pistol:
                 currentWeapons.Add(new Weapon { weaponType = WeaponTypes.Pistol, damage = 10 });
                 break;
@@ -74,7 +56,9 @@ public class WeaponHandler : MonoBehaviour
         switch (level)
         {
             case 3:
-            //add knife
+                //add knife
+                AddWeapon(WeaponTypes.Knife);
+                break;
             case 5:
                 AddWeapon(WeaponTypes.Rifle);
                 break;

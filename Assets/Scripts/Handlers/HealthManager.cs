@@ -14,6 +14,8 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private Sprite health100;
     [SerializeField] private ThemeMusic themeMusic;
 
+
+
     void Start()
     {
         healthImage.sprite = health100;

@@ -18,6 +18,11 @@ public class EnemyHandler : MonoBehaviour
     [SerializeField] private elonHealth elonHealth;
     [SerializeField] private markHealth markHealth;
 
+    bool markSpawned = false;
+    bool elonSpawned = false;
+
+    float deltaTimeCounter = 0f;
+
     public void Awake()
     {
         enemyPool = new ObjectPool<GameObject>(
@@ -30,10 +35,7 @@ public class EnemyHandler : MonoBehaviour
             maxSize: 100
         );
     }
-    // 2 minute spawn with 5 second intervals, can be adjusted for testing 
 
-    bool markSpawned = false;
-    bool elonSpawned = false;
     public void FixedUpdate()
     {
 
@@ -75,7 +77,7 @@ public class EnemyHandler : MonoBehaviour
         float energy = Mathf.Clamp01(currentEnemies.Count / 16f);
         themeMusic.SetEnergy(energy);
     }
-    float deltaTimeCounter = 0f;
+
     public void CircleSpawnEnemies(float radius, float spawnInterval, float deltaTime)
     {
         //spawn enemies in a circle around the player at a set interval
@@ -96,15 +98,17 @@ public class EnemyHandler : MonoBehaviour
         {
             case EnemyTypes.Walker:
                 var stats = Walker.InitializeStats(Time.time);
-                var enemyComponent = new EnemyStats();
-                enemyComponent.enemyType = type;
-                enemyComponent.maxHealth = stats.maxHealth;
-                enemyComponent.speed = stats.speed;
-                enemyComponent.currentHealth = stats.currentHealth;
-                enemyComponent.damage = stats.damage;
-                enemyComponent.range = stats.range;
-                enemyComponent.xpamount = stats.xpamount;
-                enemyComponent.stats = stats.stats;
+                var enemyComponent = new EnemyStats
+                {
+                    enemyType = type,
+                    maxHealth = stats.maxHealth,
+                    speed = stats.speed,
+                    currentHealth = stats.currentHealth,
+                    damage = stats.damage,
+                    range = stats.range,
+                    xpamount = stats.xpamount,
+                    stats = stats.stats
+                };
                 enemyComponent.enemyType = stats.enemyType;
                 enemystruct enemyStruct = enemy.GetComponent<enemystruct>();
                 enemyStruct.InitializeEnemy(enemyComponent);

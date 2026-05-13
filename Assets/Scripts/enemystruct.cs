@@ -6,7 +6,7 @@ public class enemystruct : MonoBehaviour
 {
     public EnemyStats enemyStats;
     public GameObject player;
-    public playerMovement playerMovement;
+    public PlayerMovement playerMovement;
     public Rigidbody2D enemybody;
     [SerializeField] private float speed = 0.003f;
     [SerializeField] private SpriteRenderer spriteRenderer;

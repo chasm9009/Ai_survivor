@@ -5,8 +5,10 @@ using TMPro;
 public class ScoreHolder : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] TextMeshProUGUI currentLevelText;
-    [SerializeField] Image xpImage;
+    [SerializeField]
+    private TextMeshProUGUI currentLevelText;
+    [SerializeField]
+    private Image xpImage;
 
     [Space(10)]
     [Header("XP Sprites")]
@@ -23,6 +25,7 @@ public class ScoreHolder : MonoBehaviour
     bool showFullXP = false;
     public void UpdateXPBar(int currentLevel, float currentXp = -1, float targetXp = -1)
     {
+        Debug.Log("Updating XP Bar: Current Level: " + currentLevel + ", Current XP: " + currentXp + ", Target XP: " + targetXp);
         if (showFullXP)
         {
             xpImage.sprite = xp100;
