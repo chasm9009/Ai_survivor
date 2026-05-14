@@ -5,44 +5,43 @@ using TMPro;
 public class ScoreHolder : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] TextMeshProUGUI currentLevelText;
-    [SerializeField] Image xpImage;
+    [SerializeField] private TextMeshProUGUI currentLevelText;
+    [SerializeField] private Image xpImage;
 
     [Space(10)]
     [Header("XP Sprites")]
-    [SerializeField] Sprite xp0;
-    [SerializeField] Sprite xp25;
-    [SerializeField] Sprite xp50;
-    [SerializeField] Sprite xp75;
-    [SerializeField] Sprite xp100;
+    [SerializeField] private Sprite[] xpSprites; // array i stedet for individuelle sprites for hver xp level
 
     [Space(10)]
     [Header("Score Settings")]
     [SerializeField] int targetXP = 100;
     [SerializeField] int targetXPIncrease = 25;
     bool showFullXP = false;
-    public void UpdateXPBar(int currentLevel, float currentXp = -1, float targetXp = -1)
+    public void UpdateXPBar(int currentLevel, float currentXp, float targetXp)
     {
-        if (showFullXP)
-        {
-            xpImage.sprite = xp100;
-            showFullXP = false;
+        if (xpImage == null || xpSprites.Length == 0)
             return;
-        }
 
         float progress = (float)currentXp / targetXp;
 
-        if (progress >= 1f)
-            xpImage.sprite = xp100;
-        else if (progress >= 0.75f)
-            xpImage.sprite = xp75;
-        else if (progress >= 0.5f)
-            xpImage.sprite = xp50;
-        else if (progress >= 0.25f)
-            xpImage.sprite = xp25;
-        else
-            xpImage.sprite = xp0;
+        int spriteIndex = GetXPIndex(progress);
 
-        currentLevelText.text = "Level " + currentLevel;
+        xpImage.sprite = xpSprites[spriteIndex];
+
+        currentLevelText.text = "Level: " + currentLevel;
+    }
+
+    private int GetXPIndex(float progress)
+    {
+        if (progress >= 1f)
+            return 4; 
+        else if (progress >= 0.75f)
+            return 3; 
+        else if (progress >= 0.5f)
+            return 2; 
+        else if (progress >= 0.25f)
+            return 1; 
+        else
+            return 0;
     }
 }
