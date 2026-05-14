@@ -5,43 +5,39 @@ public class HealthBar : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Image healthImage;
-
-    [Header("Health Sprites")]
-    [SerializeField] private Sprite health0;
-    [SerializeField] private Sprite health25;
-    [SerializeField] private Sprite health50;
-    [SerializeField] private Sprite health75;
-    [SerializeField] private Sprite health100;
     [SerializeField] private ThemeMusic themeMusic;
 
-    void Start()
-    {
-        healthImage.sprite = health100;
-    }
-
+    [Header("Health Sprites")] 
+    
+    [SerializeField] private Sprite[] healthSprites; // array i stedet for individuelle sprites for hver health level
+    
     public void UpdateHealthBar(int currentHealth, int maxHealth)
     {
-        if (healthImage == null)
+        if (healthImage == null || healthSprites.Length == 0)
             return;
 
         float progress = (float)currentHealth / maxHealth;
 
-        if (progress >= 1f)
-            healthImage.sprite = health100;
-        else if (progress >= 0.75f)
-            healthImage.sprite = health75;
-        else if (progress >= 0.5f)
-            healthImage.sprite = health50;
-        else if (progress >= 0.25f)
-            healthImage.sprite = health25;
-        else
-            healthImage.sprite = health0;
+        int spriteIndex = GetHealthIndex(progress);
+        
+        healthImage.sprite = healthSprites[spriteIndex];
 
-        float healthprog = (float)currentHealth / (float)maxHealth;
-        var reverse = 1 - healthprog;
+        float reverse = 1f- progress;
         themeMusic.StartRinging(reverse);
     }
 
-
+        private int GetHealthIndex(float progress)
+    {
+        if (progress >= 1f)
+            return 4; // 100% health
+        else if (progress >= 0.75f)
+            return 3;    // 75% health
+        else if (progress >= 0.50f)
+            return 2; // 50% health
+        else if (progress >= 0.25f)
+            return 1; // 25% health
+        else
+            return 0; // 0% health
+    }
 }
 
