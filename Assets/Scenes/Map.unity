@@ -110710,12 +110710,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthBar
   healthImage: {fileID: 1648934772}
-  health0: {fileID: 3666395730429428221, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
-  health25: {fileID: -8142078518724970007, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
-  health50: {fileID: 5321405506712674580, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
-  health75: {fileID: -3460609258686177541, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
-  health100: {fileID: -7310718435115833628, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
   themeMusic: {fileID: 292775803}
+  healthSprites:
+  - {fileID: 3666395730429428221, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
+  - {fileID: -8142078518724970007, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
+  - {fileID: 5321405506712674580, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
+  - {fileID: -3460609258686177541, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
+  - {fileID: -7310718435115833628, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
 --- !u!114 &1648934772
 MonoBehaviour:
   m_ObjectHideFlags: 0

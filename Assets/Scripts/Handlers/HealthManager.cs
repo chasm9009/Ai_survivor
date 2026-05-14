@@ -10,7 +10,8 @@ public class HealthBar : MonoBehaviour
     [Header("Health Sprites")] 
     
     [SerializeField] private Sprite[] healthSprites; // array i stedet for individuelle sprites for hver health level
-    
+
+
     public void UpdateHealthBar(int currentHealth, int maxHealth)
     {
         if (healthImage == null || healthSprites.Length == 0)

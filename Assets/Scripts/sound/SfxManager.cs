@@ -101,8 +101,7 @@ public class SfxManager : MonoBehaviour
 
 
        public void PlayElonIntro()
-    {
-        elonIntroInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    {   
         elonIntroInstance.start();
     }
 

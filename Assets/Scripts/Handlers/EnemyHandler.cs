@@ -37,7 +37,7 @@ public class EnemyHandler : MonoBehaviour
     public void FixedUpdate()
     {
 
-        if (currentEnemies.Count < 50)
+        if (currentEnemies.Count < 20)
         {
             if (Time.time > 300f)
             {
@@ -57,17 +57,17 @@ public class EnemyHandler : MonoBehaviour
                     markSpawned = true;
                     markHealth.spawnMark();
                 }
-                CircleSpawnEnemies(50f, 1f, Time.fixedDeltaTime);
+                CircleSpawnEnemies(50f, 2f, Time.fixedDeltaTime);
             }
             else if (Time.time > 60f)
             {
                 Debug.Log("spawn more advanced");
-                CircleSpawnEnemies(30f, 1f, Time.fixedDeltaTime);
+                CircleSpawnEnemies(30f, 2.5f, Time.fixedDeltaTime);
             }
             else
             {
                 Debug.Log("spawn basic");
-                CircleSpawnEnemies(20f, 2f, Time.fixedDeltaTime);
+                CircleSpawnEnemies(20f, 3f, Time.fixedDeltaTime);
             }
         }
         UpdateEnemies();
