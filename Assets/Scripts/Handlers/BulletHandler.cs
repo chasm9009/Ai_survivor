@@ -14,7 +14,9 @@ public class BulletHandler : MonoBehaviour
     [SerializeField] private Stats playerStats;
     [SerializeField] private GameObject pistolBulletPrefab;
 
-    [SerializeField] private BulletSound bulletSound1;
+     public static event Action OnPistolShot;
+    public static event Action OnKnifeSwing;
+    public static event Action OnEnergyShot;
 
     public void Start()
     {
@@ -41,19 +43,19 @@ public class BulletHandler : MonoBehaviour
         switch (type)
         {
             case BulletTypes.Knife:
-                bulletSound1.PlayKnifeSwing();
+                OnKnifeSwing?.Invoke();
                 KnifeBullet.UpdateKnifeBulletStats(bulletComponent, playerStats);
                 break;
             case BulletTypes.Pistol:
-                bulletSound1.PlayBang();
+                OnPistolShot?.Invoke();
                 PistolBullet.UpdatePistolBulletStats(bulletComponent, playerStats);
                 break;
             case BulletTypes.Rifle:
-                bulletSound1.PlayBang();
+                OnEnergyShot?.Invoke();
                 RifleBullet.UpdateRifleBulletStats(bulletComponent, playerStats);
                 break;
             case BulletTypes.Shotgun:
-                bulletSound1.PlayEnergyShock();
+                OnEnergyShot?.Invoke();
                 ShotgunBullet.UpdateShotgunBulletStats(bulletComponent, playerStats);
                 break;
             default:

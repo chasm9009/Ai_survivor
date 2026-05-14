@@ -9,7 +9,6 @@ public struct Stats
     public int Range;
     public int BulletSpeed;
     public float fireRate;
-
     public float XP;
     public float XPToNextLevel;
     public int Level;

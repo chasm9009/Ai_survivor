@@ -112056,7 +112056,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BulletHandler
   currentBullets: []
   pistolBulletPrefab: {fileID: 7747355875022275002, guid: 7ebe8d5f5c1cf6542a1519a36c0e582a, type: 3}
-  bulletSound1: {fileID: 1630291442}
 --- !u!114 &1811915774
 MonoBehaviour:
   m_ObjectHideFlags: 0

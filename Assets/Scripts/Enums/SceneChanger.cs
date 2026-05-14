@@ -17,7 +17,7 @@ public class SceneChanger : MonoBehaviour
     {
     
     }
-    public void changeScene(GameObject nameOfPanel)
+    public void ChangeScene(GameObject nameOfPanel)
     {
         // Deactivate all panels
         Introscene.SetActive(false);

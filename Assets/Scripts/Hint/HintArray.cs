@@ -84,6 +84,7 @@ public static class HintArray
     static public Dictionary<string, string> quizDictionary = new Dictionary<string, string>()
     {
         // Duty to inform
+        //the values and keys are opposite here
         {"That individuals are informed about how their data is used", "What does duty to inform require?"},
         {"The company responsible for processing the data", "Who is the data controller?"},
 

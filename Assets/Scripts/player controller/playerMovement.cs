@@ -16,7 +16,6 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] public InputActionReference moveInput;
     [SerializeField] private SpriteRenderer spriteRenderer;
-
     [SerializeField] private ScoreHolder scoreHolder;
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private HintQuizController hintQuizController;

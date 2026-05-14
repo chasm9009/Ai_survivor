@@ -108,6 +108,11 @@ public class HintQuizController : MonoBehaviour
         AnswerButton_C.onClick.RemoveAllListeners();
         AnswerButton_D.onClick.RemoveAllListeners();
 
+        AnswerButton_A.onClick.AddListener(SfxManager.Instance.PlayHoverButton);
+        AnswerButton_B.onClick.AddListener(SfxManager.Instance.PlayHoverButton);
+        AnswerButton_C.onClick.AddListener(SfxManager.Instance.PlayHoverButton);
+        AnswerButton_D.onClick.AddListener(SfxManager.Instance.PlayHoverButton);
+
         AnswerButton_A.onClick.AddListener(() => CheckAnswer(AnswerButton_A, data[0], spørgsmål));
         AnswerButton_B.onClick.AddListener(() => CheckAnswer(AnswerButton_B, data[1], spørgsmål));
         AnswerButton_C.onClick.AddListener(() => CheckAnswer(AnswerButton_C, data[2], spørgsmål));

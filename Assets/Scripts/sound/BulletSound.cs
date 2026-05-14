@@ -1,32 +1,47 @@
 using UnityEngine;
 using FMODUnity;
-using Unity.VisualScripting;
+using System;
+
 
 
 public class BulletSound : MonoBehaviour
 {
-    public static BulletSound Instance;
+   
+    [Header("Bullet Sounds")]
     [SerializeField] private EventReference pistolShot;
     [SerializeField] private EventReference energyShock;
     [SerializeField] private EventReference knifeSwing;
 
-    private void Awake()
+   
+
+     private void OnEnable()
     {
-        Instance = new BulletSound();
+        BulletHandler.OnPistolShot += PlayPistolShot;
+        BulletHandler.OnKnifeSwing += PlayKnifeSwing;
+        BulletHandler.OnEnergyShot += PlayEnergyShot;
     }
 
-    // Update is called once per frame
-    public void PlayBang()
+    private void OnDisable()
+    {
+        BulletHandler.OnPistolShot -= PlayPistolShot;
+        BulletHandler.OnKnifeSwing -= PlayKnifeSwing;
+        BulletHandler.OnEnergyShot -= PlayEnergyShot;
+    }
+
+    private void PlayPistolShot()
     {
         RuntimeManager.PlayOneShot(pistolShot);
     }
 
-    public void PlayEnergyShock()
+    private void PlayEnergyShot()
     {
         RuntimeManager.PlayOneShot(energyShock);
     }
-    public void PlayKnifeSwing()
+
+    private void PlayKnifeSwing()
     {
         RuntimeManager.PlayOneShot(knifeSwing);
     }
+
 }
+
