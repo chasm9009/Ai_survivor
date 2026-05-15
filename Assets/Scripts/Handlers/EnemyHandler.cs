@@ -37,12 +37,12 @@ public class EnemyHandler : MonoBehaviour
 {
     if (currentEnemies.Count < 22)
     {
-        if (Time.time > 60f)
+        if (Time.time > 360f)
         {
             Debug.Log("spawn more advanced");
             CircleSpawnEnemies(30f, 1f, Time.fixedDeltaTime);
         }
-        else if (Time.time > 30f)
+        else if (Time.time > 200f)
         {
             Debug.Log("spawn elon");
             if (!elonSpawned)

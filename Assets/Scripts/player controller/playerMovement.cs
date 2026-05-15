@@ -13,7 +13,7 @@ public class playerMovement : MonoBehaviour
     private WeaponHandler weaponHandler;
 
     private Rigidbody rb;
-    [SerializeField] private float speed = 5f;
+    [SerializeField] public float speed = 5f;
     [SerializeField] public InputActionReference moveInput;
     [SerializeField] private SpriteRenderer spriteRenderer;
 

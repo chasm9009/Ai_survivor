@@ -15,12 +15,15 @@ public class SfxManager : MonoBehaviour
     [Header("Elon")]
     [SerializeField] private EventReference elonQuotes;
     [SerializeField] private EventReference elonDeath;
+    [SerializeField] private EventReference elonIntro;
 
     [Header("Mark")]
     [SerializeField] private EventReference markQuotes;
     [SerializeField] private EventReference markDeath;
 
-    [SerializeField] private EventReference elonIntro;
+    [Header("Voiceline timings")]
+    [SerializeField] private float voicelineCooldown = 5f;
+    private float lastVoicelineTime = -999f;
 
     private EventInstance elonQuotesInstance;
     private EventInstance markQuotesInstance;
@@ -31,7 +34,17 @@ public class SfxManager : MonoBehaviour
         elonQuotesInstance = RuntimeManager.CreateInstance(elonQuotes);
         markQuotesInstance = RuntimeManager.CreateInstance(markQuotes);
     }
-
+ public void TryPlayVoiceline(int bossIndex = 0)
+    {
+        if (Time.time - lastVoicelineTime >= voicelineCooldown)
+        {
+            if (bossIndex == 0)
+                PlayMarkQuotes();
+            else if (bossIndex == 1)
+                PlayElonQuotes();
+            lastVoicelineTime = Time.time;
+        }
+    }
     public void PlayPlayerDeath()
     {
         RuntimeManager.PlayOneShot(playerDeath);
