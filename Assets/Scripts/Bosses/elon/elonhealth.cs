@@ -9,6 +9,10 @@ public class elonHealth : MonoBehaviour
     [SerializeField] private Image healthImage;
     [SerializeField] private elonattacks elonAttacks;
 
+    [Header("Boss Sprite")]
+    [SerializeField] private SpriteRenderer bossRenderer;
+    [SerializeField] private Sprite elonSprite;
+
     [Header("Health Sprites")]
     [SerializeField] private Sprite health0;
     [SerializeField] private Sprite health25;
@@ -23,11 +27,56 @@ public class elonHealth : MonoBehaviour
 
     public bool isDead = false;
     public GameObject elonBoss;
+    private bool spriteSet = false;
+
+    void Awake()
+    {
+        EnforceElonSprite();
+    }
 
     void Start()
     {
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthBar();
+        EnforceElonSprite();
+    }
+
+    void Update()
+    {
+        if (!spriteSet)
+        {
+            EnforceElonSprite();
+            spriteSet = true;
+        }
+
+        UpdateHealthBar();
+        if (currentHealth <= 0 && !isDead)
+        {
+            isDead = true;
+            Debug.Log("💀 ELON DEFEATED");
+            sfxManager.StopElonQuotes();
+            elonDYING();
+            elondeathsound();
+        }
+    }
+
+    private void EnforceElonSprite()
+    {
+        if (bossRenderer != null && elonSprite != null)
+            bossRenderer.sprite = elonSprite;
+    }
+
+    private void UpdateHealthBar()
+    {
+        if (healthImage == null) return;
+
+        float progress = (float)currentHealth / maxHealth;
+
+        if (progress >= 1f)         healthImage.sprite = health100;
+        else if (progress >= 0.75f) healthImage.sprite = health75;
+        else if (progress >= 0.5f)  healthImage.sprite = health50;
+        else if (progress >= 0.25f) healthImage.sprite = health25;
+        else                        healthImage.sprite = health0;
     }
 
     public void TakeDamage(int damage)
@@ -41,34 +90,6 @@ public class elonHealth : MonoBehaviour
     {
         if (currentHealth > 0)
             TakeDamage(25);
-    }
-
-    void Update()
-    {
-        UpdateHealthBar();
-        if (currentHealth <= 0 && !isDead)
-        {
-            isDead = true;
-            Debug.Log("💀 ELON DEFEATED");
-            elonAttacks.circleBurstActive = true;
-            sfxManager.StopElonQuotes();
-            elonDYING();
-            elondeathsound();
-        }
-    }
-
-
-    private void UpdateHealthBar()
-    {
-        if (healthImage == null) return;
-
-        float progress = (float)currentHealth / maxHealth;
-
-        if (progress >= 1f)         healthImage.sprite = health100;
-        else if (progress >= 0.75f) healthImage.sprite = health75;
-        else if (progress >= 0.5f)  healthImage.sprite = health50;
-        else if (progress >= 0.25f) healthImage.sprite = health25;
-        else                        healthImage.sprite = health0;
     }
 
     public void elonDYING()
@@ -90,7 +111,10 @@ public class elonHealth : MonoBehaviour
     public void spawnElon()
     {
         elonBoss.SetActive(true);
+        isDead = false;
+        spriteSet = false; // force sprite re-enforcement on re-spawn
         currentHealth = maxHealth;
         UpdateHealthBar();
+        EnforceElonSprite();
     }
 }

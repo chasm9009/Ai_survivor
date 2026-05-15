@@ -2,36 +2,42 @@ using UnityEngine;
 using UnityEngine.Pool;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class elonattacks : MonoBehaviour
 {
     [Header("References")]
     public GameObject player;
-    [SerializeField] private GameObject dogecoinPrefab;
+
+    [Header("Boss Sprite")]
+    [SerializeField] public SpriteRenderer bossRenderer;
+    [SerializeField] public Sprite elonSprite;
 
     [Header("Attack Settings")]
+    [SerializeField] private GameObject dogecoinPrefab;
     [SerializeField] private float projectileSpeed = 8f;
     [SerializeField] private int projectileCount = 20;
     [SerializeField] private float delayBetweenShots = 0.1f;
     [SerializeField] private float projectileLifetime = 1.5f;
-    [SerializeField] SfxManager sfxManager;
+    [SerializeField] private SfxManager sfxManager;
 
     [Header("Voiceline Settings")]
-    [SerializeField] private float voicelineCooldown = 3f; // adjust to match clip length
+    [SerializeField] private float voicelineCooldown = 3f;
     private float lastVoicelineTime = -4f;
 
-
     public bool specialAttack = true;
+    public bool circleBurstActive = false;
+    private bool spriteSet = false;
 
     private ObjectPool<GameObject> dogecoinPool;
 
     public GameObject dogecoinshooter;
     public elonmovement elonmovement;
 
-    public bool circleBurstActive = false;
-
     void Awake()
     {
+        EnforceElonSprite();
+
         dogecoinPool = new ObjectPool<GameObject>(
             CreateCoin,
             OnTakeCoin,
@@ -43,33 +49,50 @@ public class elonattacks : MonoBehaviour
         );
     }
 
-    void Update()
+    void Start()
     {
-        if (Random.Range(0f, 1f) > 0.995f && !circleBurstActive)
-    {
-        circleBurstActive = true;
-        TryPlayVoiceline();
-        Debug.Log("🚀 SPECIAL ATTACK: CIRCLE BURST");
-        CircleBurstAttack();
+        EnforceElonSprite();
     }
 
-    if (Random.Range(0f, 1f) > 0.995f && !circleBurstActive)
+    void Update()
     {
-        circleBurstActive = true;
-        TryPlayVoiceline();
-        Debug.Log("🚀 SPECIAL ATTACK: FULL ELECTRIC BOOST");
-        SpeedBoost();
+        if (!spriteSet)
+        {
+            EnforceElonSprite();
+            spriteSet = true;
+        }
+
+        if (Random.Range(0f, 1f) > 0.995f && !circleBurstActive)
+        {
+            circleBurstActive = true;
+            TryPlayVoiceline();
+            Debug.Log("🚀 SPECIAL ATTACK: CIRCLE BURST");
+            CircleBurstAttack();
+        }
+
+        if (Random.Range(0f, 1f) > 0.995f && !circleBurstActive)
+        {
+            circleBurstActive = true;
+            TryPlayVoiceline();
+            Debug.Log("🚀 SPECIAL ATTACK: FULL ELECTRIC BOOST");
+            SpeedBoost();
+        }
     }
+
+    private void EnforceElonSprite()
+    {
+        if (bossRenderer != null && elonSprite != null)
+            bossRenderer.sprite = elonSprite;
     }
-    
+
     void TryPlayVoiceline()
-{
-    if (Time.time - lastVoicelineTime >= voicelineCooldown)
     {
-        sfxManager.PlayElonQuotes();
-        lastVoicelineTime = Time.time;
+        if (Time.time - lastVoicelineTime >= voicelineCooldown)
+        {
+            sfxManager.PlayElonQuotes();
+            lastVoicelineTime = Time.time;
+        }
     }
-}
 
     // ================================
     // ATTACK
@@ -88,32 +111,21 @@ public class elonattacks : MonoBehaviour
         for (int i = 0; i < projectileCount; i++)
         {
             float angle = i * angleStep * Mathf.Deg2Rad;
-
             Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;
-
             FireProjectile(direction);
-
             yield return new WaitForSeconds(delayBetweenShots);
         }
-         elonmovement.dashSpeed = 15f;
-         circleBurstActive = false;
+
+        elonmovement.dashSpeed = 15f;
+        circleBurstActive = false;
     }
 
     void FireProjectile(Vector2 direction)
-{
-    GameObject coin = dogecoinPool.Get();
-
-    coin.transform.position = transform.position;
-
+    {
+        GameObject coin = dogecoinPool.Get();
+        coin.transform.position = transform.position;
         dogebullethandler bullet = coin.GetComponent<dogebullethandler>();
         bullet.Init(dogecoinPool, direction * projectileSpeed, projectileLifetime);
-}
-
-    IEnumerator ReturnToPoolAfterTime(GameObject coin, float time)
-    {
-        yield return new WaitForSeconds(time);
-
-        dogecoinPool.Release(coin);
     }
 
     // ================================
@@ -122,8 +134,7 @@ public class elonattacks : MonoBehaviour
 
     GameObject CreateCoin()
     {
-        GameObject coin = Instantiate(dogecoinPrefab);
-        return coin;
+        return Instantiate(dogecoinPrefab);
     }
 
     void OnTakeCoin(GameObject coin)
@@ -141,7 +152,9 @@ public class elonattacks : MonoBehaviour
         Destroy(coin);
     }
 
-    // NEXT ATTACK Complete speed boost!
+    // ================================
+    // SPEED BOOST
+    // ================================
 
     public void SpeedBoost()
     {

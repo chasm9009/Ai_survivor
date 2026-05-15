@@ -1,7 +1,6 @@
 using System;
 using System.Buffers;
 using System.Collections.Generic;
-using Mono.Cecil.Cil;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -34,42 +33,40 @@ public class EnemyHandler : MonoBehaviour
 
     bool markSpawned = false;
     bool elonSpawned = false;
-    public void FixedUpdate()
+   public void FixedUpdate()
+{
+    if (currentEnemies.Count < 22)
     {
-
-        if (currentEnemies.Count < 50)
+        if (Time.time > 60f)
         {
-            if (Time.time > 300f)
+            Debug.Log("spawn more advanced");
+            CircleSpawnEnemies(30f, 1f, Time.fixedDeltaTime);
+        }
+        else if (Time.time > 30f)
+        {
+            Debug.Log("spawn elon");
+            if (!elonSpawned)
             {
-                Debug.Log("spawn elon");
-                if (!elonSpawned)
-                {
-                    elonSpawned = true;
-                    elonHealth.spawnElon();
-                }
-
-            }
-            else if (Time.time > 120f)
-            {
-                Debug.Log("spawn mark");
-                if (!markSpawned)
-                {
-                    markSpawned = true;
-                    markHealth.spawnMark();
-                }
-                CircleSpawnEnemies(50f, 1f, Time.fixedDeltaTime);
-            }
-            else if (Time.time > 60f)
-            {
-                Debug.Log("spawn more advanced");
-                CircleSpawnEnemies(30f, 1f, Time.fixedDeltaTime);
-            }
-            else
-            {
-                Debug.Log("spawn basic");
-                CircleSpawnEnemies(20f, 2f, Time.fixedDeltaTime);
+                elonSpawned = true;
+                elonHealth.spawnElon();
             }
         }
+        else if (Time.time > 12f)
+        {
+            Debug.Log("spawn mark");
+            if (!markSpawned)
+            {
+                markSpawned = true;
+                markHealth.spawnMark();
+            }
+            CircleSpawnEnemies(50f, 1f, Time.fixedDeltaTime);
+        }
+        else
+        {
+            Debug.Log("spawn basic");
+            CircleSpawnEnemies(20f, 2f, Time.fixedDeltaTime);
+        }
+    }
         UpdateEnemies();
 
         float energy = Mathf.Clamp01(currentEnemies.Count / 16f);

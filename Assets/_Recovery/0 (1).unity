@@ -7042,9 +7042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::elonHealth
   healthImage: {fileID: 192909992}
-  elonAttacks: {fileID: 249998534}
-  bossRenderer: {fileID: 249998532}
-  elonSprite: {fileID: -489325520908386594, guid: 4e7696fc8672aef4bb50fb0847610fc2, type: 3}
+  elonAttacks: {fileID: 249998527}
   health0: {fileID: 2943928643792035061, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
   health25: {fileID: -7046930102425164898, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
   health50: {fileID: 2439555171015636904, guid: 0a39511b2ed573e4e94a45b5ad518b4b, type: 3}
@@ -7244,7 +7242,7 @@ GameObject:
   - component: {fileID: 249998530}
   - component: {fileID: 249998529}
   - component: {fileID: 249998528}
-  - component: {fileID: 249998534}
+  - component: {fileID: 249998527}
   m_Layer: 0
   m_Name: ElonMusk
   m_TagString: Untagged
@@ -7252,6 +7250,30 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &249998527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249998526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a9e3d3269365084f8cc71f04617fb73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::elonattacks
+  player: {fileID: 1811915771}
+  dogecoinPrefab: {fileID: 2988643783488499838, guid: 57e39fdadf3f4fd429f52c52ad52e7a2, type: 3}
+  projectileSpeed: 20
+  projectileCount: 16
+  delayBetweenShots: 0.15
+  projectileLifetime: 1.5
+  sfxManager: {fileID: 1994004234}
+  voicelineCooldown: 3
+  specialAttack: 1
+  dogecoinshooter: {fileID: 716490719}
+  elonmovement: {fileID: 249998528}
+  circleBurstActive: 0
 --- !u!114 &249998528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7270,7 +7292,7 @@ MonoBehaviour:
   dashDuration: 1
   dashChance: 0.99
   yTeleportThreshold: 12
-  elonattacks: {fileID: 0}
+  elonattacks: {fileID: 249998527}
   elonHealth: {fileID: 192909991}
   playerMovement: {fileID: 1811915777}
 --- !u!50 &249998529
@@ -7444,32 +7466,6 @@ Transform:
   - {fileID: 1627083897}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &249998534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 249998526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a9e3d3269365084f8cc71f04617fb73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::elonattacks
-  player: {fileID: 1811915771}
-  bossRenderer: {fileID: 249998532}
-  elonSprite: {fileID: -489325520908386594, guid: 4e7696fc8672aef4bb50fb0847610fc2, type: 3}
-  dogecoinPrefab: {fileID: 2988643783488499838, guid: 57e39fdadf3f4fd429f52c52ad52e7a2, type: 3}
-  projectileSpeed: 8
-  projectileCount: 20
-  delayBetweenShots: 0.1
-  projectileLifetime: 1.5
-  sfxManager: {fileID: 1994004234}
-  voicelineCooldown: 3
-  specialAttack: 1
-  circleBurstActive: 0
-  dogecoinshooter: {fileID: 716490719}
-  elonmovement: {fileID: 249998528}
 --- !u!1 &271222832
 GameObject:
   m_ObjectHideFlags: 0
@@ -97061,7 +97057,7 @@ Animator:
   m_GameObject: {fileID: 1531156357}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8d6c7a7fddbb98a489e98f4b1c18f81d, type: 2}
+  m_Controller: {fileID: 9100000, guid: b05d8d318a6208444893f43587900f66, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
