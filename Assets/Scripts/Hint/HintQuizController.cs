@@ -22,6 +22,10 @@ public class HintQuizController : MonoBehaviour
     [Header("Upgrade Screen")]
     [SerializeField] private GameObject UpgradeScreen;
 
+    [Header("Answer Colors")]
+    public Color correctColor = new Color(0.4f, 0.8f, 0.4f);
+    public Color incorrectColor = new Color(0.8f, 0.4f, 0.4f);
+
     private List<string> unansweredQuestions = new List<string>();
     private string currentQuestion;
     private Color normalColor;
@@ -126,7 +130,7 @@ public class HintQuizController : MonoBehaviour
 
         if (selectedAnswer == correctAnswer)
         {
-            SetButtonColor(pressedButton, new Color(0.4f, 0.8f, 0.4f));
+            SetButtonColor(pressedButton, correctColor);
             unansweredQuestions.Remove(spørgsmål);
 
             // Hide quiz elements but keep QuizScreen and background active
@@ -140,9 +144,9 @@ public class HintQuizController : MonoBehaviour
         }
         else
         {
-            SetButtonColor(pressedButton, new Color(0.8f, 0.4f, 0.4f));
+            SetButtonColor(pressedButton, incorrectColor);
             if (correctButton != null)
-                SetButtonColor(correctButton, new Color(0.4f, 0.8f, 0.4f));
+                SetButtonColor(correctButton, correctColor);
             StartCoroutine(QuizResultTimer());
         }
     }
@@ -191,11 +195,6 @@ public class HintQuizController : MonoBehaviour
 
     private string GetCorrectAnswer(string spørgsmål)
     {
-        foreach (var kvp in HintArray.quizDictionary)
-        {
-            if (kvp.Value == spørgsmål)
-                return kvp.Key;
-        }
-        return "";
+        return HintArray.quizDictionary[spørgsmål];
     }
 }
